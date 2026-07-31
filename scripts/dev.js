@@ -1,5 +1,5 @@
-const { spawn } = require('child_process');
-const os = require('os');
+import { spawn } from 'child_process';
+import os from 'os';
 
 // ==========================================
 // 1. ESTILOS DE TERMINAL (ANSI COLORS)
