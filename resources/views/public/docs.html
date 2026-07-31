@@ -1,0 +1,609 @@
+<main class="min-h-screen bg-black text-zinc-300 font-sans flex flex-col lg:flex-row pt-[64px]">
+
+  <!-- Mobile Section Navigator (Visible only on small screens) -->
+  <div
+    class="lg:hidden sticky top-[64px] z-30 bg-black/90 backdrop-blur-xl border-b border-zinc-900 px-6 py-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+    <div class="flex gap-6 items-center" id="mobile-docs-nav">
+      <button onclick="docsScrollTo('introduction', this)"
+        class="text-xs font-bold text-white uppercase tracking-widest transition-colors mobile-link">Intro</button>
+      <button onclick="docsScrollTo('installation', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Setup</button>
+      <button onclick="docsScrollTo('quick-start', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Start</button>
+      <button onclick="docsScrollTo('structure', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Structure</button>
+      <button onclick="docsScrollTo('configuration', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Config</button>
+      <button onclick="docsScrollTo('routing', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Routing</button>
+      <button onclick="docsScrollTo('views', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Views</button>
+      <button onclick="docsScrollTo('components', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Components</button>
+      <button onclick="docsScrollTo('store', this)"
+        class="text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link">Store</button>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside
+    class="w-64 border-r border-zinc-900 hidden lg:block h-[calc(100vh-64px)] sticky top-[64px] self-start overflow-y-auto px-6 py-10 bg-black">
+    <div class="mb-10">
+      <h3 class="text-white font-bold mb-4 px-2 tracking-tight">Welcome</h3>
+      <ul class="space-y-1" id="sidebar-docs-welcome">
+        <li><button onclick="docsScrollTo('introduction', this)"
+            class="w-full text-left px-3 py-2 bg-zinc-900 text-white rounded-lg text-sm font-medium sidebar-link">Why
+            Flutcom?</button></li>
+        <li><button onclick="docsScrollTo('requirements', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Requirements</button>
+        </li>
+        <li><button onclick="docsScrollTo('installation', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Installation</button>
+        </li>
+        <li><button onclick="docsScrollTo('quick-start', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Quick Start</button>
+        </li>
+        <li><button onclick="docsScrollTo('structure', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Directory
+            Structure</button></li>
+      </ul>
+    </div>
+    <div class="mb-10">
+      <h3 class="text-white font-bold mb-4 px-2 tracking-tight">Core Concepts</h3>
+      <ul class="space-y-1" id="sidebar-docs-core">
+        <li><button onclick="docsScrollTo('configuration', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Configuration</button>
+        </li>
+        <li><button onclick="docsScrollTo('routing', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Routing
+            & Guards</button></li>
+        <li><button onclick="docsScrollTo('views', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Creating
+            Views</button></li>
+        <li><button onclick="docsScrollTo('components', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Components
+            (fc-props)</button></li>
+        <li><button onclick="docsScrollTo('store', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Global
+            Store</button></li>
+        <li><button onclick="docsScrollTo('styling', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Styling
+            & CSS</button></li>
+        <li><button onclick="docsScrollTo('modals', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Built-in
+            Modals</button></li>
+        <li><button onclick="docsScrollTo('plugins', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Plugins
+            API</button></li>
+        <li><button onclick="docsScrollTo('deployment', this)"
+            class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link">Deployment</button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 px-4 sm:px-6 lg:px-16 py-12 max-w-4xl pb-32 mx-auto lg:mx-0 overflow-x-clip w-full">
+
+    <div class="mb-16 scroll-mt-32 lg:scroll-mt-24">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs font-medium text-white mb-6">
+        <i class="bi bi-info-circle"></i> Introduction
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">Flutcom Docs</h1>
+      <p class="text-lg text-zinc-400 leading-relaxed font-light mb-8">
+        The complete guide to building zero-dependency, lightning-fast static SPAs.
+      </p>
+    </div>
+
+    <!-- Introduction -->
+    <section id="introduction" class="mb-20 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Why Flutcom?</h2>
+      <p class="text-zinc-400 leading-relaxed mb-4 text-lg">
+        Flutcom is a lightweight Vanilla JS framework that runs entirely in the browser. It gives you the power of a modern SPA
+        (routing, components, state management) without the massive overhead of Node.js, Webpack, or a Virtual DOM.
+      </p>
+      <p class="text-zinc-400 leading-relaxed mb-8">
+        We designed Flutcom to bring back the simplicity of the early web, but with the modern developer experience you expect today. You just write HTML, CSS, and JS — and the framework handles the heavy lifting, delivering instant page transitions and native performance.
+      </p>
+
+      <h3 class="text-xl font-bold text-white mb-4 tracking-tight">What can you build with Flutcom?</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="p-5 rounded-2xl bg-[#09090b] border border-white/5 hover:border-purple-500/30 transition-colors group">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
+            <i class="bi bi-lightning-charge text-purple-400 text-lg group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">High-Performance Landing Pages</h4>
+          <p class="text-sm text-zinc-500">Create stunning, animated landing pages with zero load time between sections thanks to our built-in hash router.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-[#09090b] border border-white/5 hover:border-cyan-500/30 transition-colors group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
+            <i class="bi bi-window-sidebar text-cyan-400 text-lg group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">Interactive Dashboards</h4>
+          <p class="text-sm text-zinc-500">Manage complex data using the Global Store. Build admin panels without needing a heavy bundler pipeline.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-[#09090b] border border-white/5 hover:border-emerald-500/30 transition-colors group">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
+            <i class="bi bi-person-badge text-emerald-400 text-lg group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">Dynamic Portfolios</h4>
+          <p class="text-sm text-zinc-500">Showcase your work dynamically using reusable components and native HTML imports, keeping your code clean and modular.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-[#09090b] border border-white/5 hover:border-amber-500/30 transition-colors group">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
+            <i class="bi bi-rocket-takeoff text-amber-400 text-lg group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">Rapid Prototyping</h4>
+          <p class="text-sm text-zinc-500">Test ideas in seconds. Just open <code>index.html</code> in your browser and start building instantly, no <code>npm install</code> required.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Requirements -->
+    <section id="requirements" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Requirements</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">
+        Before installing Flutcom, ensure you have the following prerequisites installed on your system:
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-start gap-3">
+          <i class="bi bi-check-circle-fill text-emerald-500 mt-1"></i>
+          <span class="text-zinc-400"><strong class="text-white">Node.js 18.0+</strong> (Required only for the CLI and Dev Server)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="bi bi-check-circle-fill text-emerald-500 mt-1"></i>
+          <span class="text-zinc-400"><strong class="text-white">NPM, Yarn or pnpm</strong></span>
+        </li>
+      </ul>
+
+      <p class="text-zinc-400 leading-relaxed mb-4 text-sm">
+        To check if you already have them installed, you can run the following commands in your terminal:
+      </p>
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden mb-6">
+        <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between">
+          <span class="text-xs font-mono text-zinc-500">Terminal</span>
+          <i class="bi bi-terminal text-zinc-600"></i>
+        </div>
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500"># Check Node.js version</span>
+node -v
+
+<span class="text-zinc-500"># Check NPM version</span>
+npm -v</code></pre>
+        </div>
+      </div>
+      
+      <div class="inline-flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-500/10 border border-purple-500/20">
+        <i class="bi bi-info-circle text-purple-400 text-lg"></i>
+        <p class="text-sm text-zinc-300">
+          Don't have Node.js? You can download it directly from <a href="https://nodejs.org/" target="_blank" class="text-purple-400 hover:text-purple-300 font-medium underline underline-offset-4 decoration-purple-500/30 hover:decoration-purple-400 transition-all">nodejs.org</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="installation" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Installation</h2>
+      
+      <!-- Tabs Header -->
+      <div class="flex items-center gap-6 border-b border-zinc-800 mb-8" id="install-tabs">
+        <button onclick="switchInstallTab('npm')" class="pb-3 text-sm font-bold text-white border-b-2 border-white transition-colors" id="tab-btn-npm">Using NPM</button>
+        <button onclick="switchInstallTab('zero')" class="pb-3 text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-colors" id="tab-btn-zero">Zero-Install</button>
+      </div>
+
+      <!-- Tab Content: NPM -->
+      <div id="tab-content-npm" class="block">
+        <p class="text-zinc-400 leading-relaxed mb-6 text-sm">For the best development experience, we recommend using NPM to run a local development server with hot-reloading features.</p>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-zinc-500">Terminal</span>
+            <i class="bi bi-terminal text-zinc-600"></i>
+          </div>
+          <div class="overflow-x-auto">
+            <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500"># 1. Create a new project via CLI</span>
+npm create flutcom@latest
+
+<span class="text-zinc-500"># 2. Navigate to your project folder</span>
+cd my-project
+
+<span class="text-zinc-500"># 3. Start the dev server</span>
+npm run dev</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Zero-Install -->
+      <div id="tab-content-zero" class="hidden">
+        <p class="text-zinc-400 leading-relaxed mb-6 text-sm">There is no compilation step. You can simply serve the source folder directly using any static web server.</p>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between">
+            <span class="text-xs font-mono text-zinc-500">Terminal</span>
+            <i class="bi bi-folder-symlink text-zinc-600"></i>
+          </div>
+          <div class="overflow-x-auto">
+            <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500"># 1. Clone the repository</span>
+git clone https://github.com/Mrblour/Flutcom my-project
+
+<span class="text-zinc-500"># 2. Navigate to directory</span>
+cd my-project
+
+<span class="text-zinc-500"># 3. Serve using npx or any other server</span>
+npx serve . 
+
+<span class="text-zinc-500"># Alternatively, just open index.html directly in your browser!</span></code></pre>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        window.switchInstallTab = function(tab) {
+          // Update Buttons
+          document.getElementById('tab-btn-npm').className = tab === 'npm' ? "pb-3 text-sm font-bold text-white border-b-2 border-white transition-colors" : "pb-3 text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-colors";
+          document.getElementById('tab-btn-zero').className = tab === 'zero' ? "pb-3 text-sm font-bold text-white border-b-2 border-white transition-colors" : "pb-3 text-sm font-bold text-zinc-500 border-b-2 border-transparent hover:text-zinc-300 transition-colors";
+          
+          // Update Content visibility
+          document.getElementById('tab-content-npm').className = tab === 'npm' ? "block" : "hidden";
+          document.getElementById('tab-content-zero').className = tab === 'zero' ? "block" : "hidden";
+        };
+      </script>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quick-start" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Quick Start</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Let's create your first view in Flutcom to get you familiar with the workflow.</p>
+      
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden mb-6">
+        <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between">
+          <span class="text-xs font-mono text-zinc-500">1. resources/views/public/hello.html</span>
+          <i class="bi bi-file-earmark-code text-zinc-600"></i>
+        </div>
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code>&lt;<span class="text-sky-400">div</span> <span class="text-purple-400">class</span>=<span class="text-orange-300">"container py-20 text-center"</span>&gt;
+  &lt;<span class="text-sky-400">h1</span> <span class="text-purple-400">class</span>=<span class="text-orange-300">"text-4xl text-white font-bold"</span>&gt;Hello Flutcom!&lt;/<span class="text-sky-400">h1</span>&gt;
+&lt;/<span class="text-sky-400">div</span>&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden mb-6">
+        <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between">
+          <span class="text-xs font-mono text-zinc-500">2. flutcom.config.js</span>
+          <i class="bi bi-gear text-zinc-600"></i>
+        </div>
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">// Register the route</span>
+<span class="text-purple-400">const</span> config = {
+  routes: {
+    <span class="text-orange-300">'#hello'</span>: { view: <span class="text-orange-300">'resources/views/public/hello.html'</span> }
+  }
+};</code></pre>
+        </div>
+      </div>
+      <p class="text-zinc-400 leading-relaxed text-sm">Now navigate to <code>http://localhost:3000/#hello</code> to see your view instantly loaded without restarting the server.</p>
+    </section>
+
+    <!-- Structure -->
+    <section id="structure" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Directory Structure</h2>
+      <div
+        class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-6 font-mono text-xs md:text-sm text-zinc-400 leading-loose overflow-x-auto">
+        <div class="flex items-center gap-2 text-white"><i class="bi bi-folder2-open text-emerald-400"></i> flutcom/
+          <span class="text-zinc-600 text-[10px] ml-2">(Do not touch: core engine)</span></div>
+        <div class="flex items-center gap-2 ml-4 text-white"><i class="bi bi-folder"></i> plugins/ <span
+            class="text-zinc-600 text-[10px] ml-2">(Your custom global scripts)</span></div>
+        <div class="flex items-center gap-2 ml-4 text-white"><i class="bi bi-folder"></i> resources/</div>
+        <div class="flex items-center gap-2 ml-8"><i class="bi bi-folder"></i> components/ <span
+            class="text-zinc-600 text-[10px] ml-2">(Reusable UI snippets)</span></div>
+        <div class="flex items-center gap-2 ml-8"><i class="bi bi-folder"></i> partials/ <span
+            class="text-zinc-600 text-[10px] ml-2">(Header/Footer)</span></div>
+        <div class="flex items-center gap-2 ml-8 text-white"><i class="bi bi-folder"></i> views/ <span
+            class="text-zinc-600 text-[10px] ml-2">(Your actual pages)</span></div>
+        <div class="flex items-center gap-2 mt-2"><i class="bi bi-filetype-js text-yellow-400"></i> flutcom.config.js
+          <span class="text-zinc-600 text-[10px] ml-2">(Main configuration)</span></div>
+        <div class="flex items-center gap-2"><i class="bi bi-filetype-html text-orange-400"></i> index.html <span
+            class="text-zinc-600 text-[10px] ml-2">(The main shell)</span></div>
+      </div>
+    </section>
+
+    <!-- Configuration -->
+    <section id="configuration" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Configuration</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">The <code>flutcom.config.js</code> file is the heart of your
+        project. It defines your metadata, routes, and global resources.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <h4 class="text-white font-bold mb-2"><code>site</code></h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">Defines SEO metadata, app name, and the
+            <code>defaultView</code> (what loads when a user visits <code>#/</code>).</p>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <h4 class="text-white font-bold mb-2"><code>partials</code></h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">Points to your Header and Footer HTML files. Flutcom injects
+            them automatically around your views.</p>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <h4 class="text-white font-bold mb-2"><code>routes</code></h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">A dictionary mapping URL hashes (like <code>#about</code>) to
+            physical HTML files in your workspace.</p>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <h4 class="text-white font-bold mb-2"><code>resources</code></h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">An array of global JavaScript plugins that the engine will
+            load and cache automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Routing -->
+    <section id="routing" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Routing & Guards</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">All routes are registered in <code>flutcom.config.js</code>.
+        Navigation happens via hash (<code>#home</code>). You can also protect routes using <strong>Guards</strong>.</p>
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">// In flutcom/main.js</span>
+<span class="text-purple-400">const</span> app = <span class="text-purple-400">new</span> Flutcom({ ... });
+
+<span class="text-zinc-500">// Create a guard to protect the dashboard</span>
+app.<span class="text-sky-400">guard</span>(<span class="text-orange-300">'dashboard'</span>, () => {
+  <span class="text-purple-400">const</span> token = localStorage.<span class="text-sky-400">getItem</span>(<span class="text-orange-300">'auth_token'</span>);
+  <span class="text-purple-400">return</span> !!token; <span class="text-zinc-500">// If false, redirects to default route</span>
+}, <span class="text-orange-300">'login'</span>);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Views -->
+    <section id="views" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Creating Views</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Views are the core pages of your application. They are simple HTML
+        fragments stored in the <code>resources/views/</code> directory.</p>
+
+      <div class="p-6 border border-zinc-800 bg-zinc-900/30 rounded-2xl mb-6">
+        <h4 class="text-white font-bold mb-3">Rules for Views:</h4>
+        <ul class="list-none space-y-3 text-sm text-zinc-400">
+          <li class="flex items-start gap-3"><i class="bi bi-x-circle text-red-500 mt-0.5"></i> <span>Do NOT include
+              <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, or <code>&lt;body&gt;</code> tags. The engine
+              injects them directly into the existing <code>index.html</code> shell.</span></li>
+          <li class="flex items-start gap-3"><i class="bi bi-check-circle text-emerald-500 mt-0.5"></i> <span>Start
+              directly with your layout tags, like <code>&lt;main&gt;</code> or <code>&lt;div&gt;</code>.</span></li>
+          <li class="flex items-start gap-3"><i class="bi bi-check-circle text-emerald-500 mt-0.5"></i> <span>You can
+              include inline <code>&lt;script&gt;</code> tags. Flutcom safely evaluates them every time the view
+              loads.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-zinc-800"><span
+            class="text-xs font-mono text-zinc-500">resources/views/public/about.html</span></div>
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">&lt;!-- Just pure, raw HTML content --&gt;</span>
+&lt;<span class="text-sky-400">main</span> <span class="text-purple-400">class</span>=<span class="text-orange-300">"container pt-20"</span>&gt;
+  &lt;<span class="text-sky-400">h1</span>&gt;About Us&lt;/<span class="text-sky-400">h1</span>&gt;
+  &lt;<span class="text-sky-400">p</span>&gt;We build fast static sites.&lt;/<span class="text-sky-400">p</span>&gt;
+&lt;/<span class="text-sky-400">main</span>&gt;
+
+&lt;<span class="text-sky-400">script</span>&gt;
+  <span class="text-sky-400">console</span>.log(<span class="text-orange-300">"The about view has loaded dynamically!"</span>);
+&lt;/<span class="text-sky-400">script</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section id="components" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Components (fc-props)</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Stop copying and pasting HTML. Flutcom's component system works in two simple steps: create a template once, and inject it anywhere with JSON data.</p>
+      
+      <div class="space-y-6">
+        <!-- Step 1 -->
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+          <div class="px-5 py-4 border-b border-zinc-800 bg-zinc-900/30">
+            <h4 class="text-white font-bold text-sm mb-1">1. The Component (The Template)</h4>
+            <p class="text-xs text-zinc-500">Create a file once. Use <code class="text-zinc-300">{{ variable }}</code> for dynamic text.</p>
+          </div>
+          <div class="px-4 py-2 border-b border-zinc-800"><span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">resources/components/badge.html</span></div>
+          <div class="overflow-x-auto">
+            <pre class="p-5 text-sm font-mono text-zinc-300"><code>&lt;<span class="text-sky-400">span</span> <span class="text-purple-400">class</span>=<span class="text-orange-300">"inline-flex rounded-full border {{ classes }}"</span>&gt;
+  &lt;<span class="text-sky-400">i</span> <span class="text-purple-400">class</span>=<span class="text-orange-300">"{{ icon }}"</span>&gt;&lt;/<span class="text-sky-400">i</span>&gt; {{ text }}
+&lt;/<span class="text-sky-400">span</span>&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+          <div class="px-5 py-4 border-b border-zinc-800 bg-zinc-900/30">
+            <h4 class="text-white font-bold text-sm mb-1">2. The View (Where you use it)</h4>
+            <p class="text-xs text-zinc-500">Add an empty container. Tell Flutcom which component to load and pass the JSON data.</p>
+          </div>
+          <div class="px-4 py-2 border-b border-zinc-800"><span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">resources/views/public/components.html</span></div>
+          <div class="overflow-x-auto">
+            <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">&lt;!-- Flutcom auto-injects the HTML here! --&gt;</span>
+&lt;<span class="text-sky-400">div</span> 
+  <span class="text-purple-400">fc-component</span>=<span class="text-orange-300">"resources/components/badge.html"</span> 
+  <span class="text-purple-400">fc-props</span>=<span class="text-orange-300">'{"classes": "text-sky-400 border-sky-900", "icon": "bi-info-circle", "text": "Info"}'</span>&gt;
+&lt;/<span class="text-sky-400">div</span>&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-6 p-5 border border-emerald-900/30 bg-emerald-950/10 rounded-2xl flex items-start gap-4">
+        <i class="bi bi-lightbulb text-emerald-400 text-xl mt-0.5"></i>
+        <div>
+          <h5 class="text-emerald-400 font-bold text-sm mb-1">The Magic</h5>
+          <p class="text-zinc-400 text-xs leading-relaxed">If you ever need to change the design of your badges, you only edit <code>badge.html</code> once. The changes automatically reflect everywhere you used it across your entire website.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store -->
+    <section id="store" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Global Store</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Built-in reactive state manager. Update the store, and all
+        subscribed UI elements update instantly.</p>
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-purple-400">const</span> store = <span class="text-sky-400">window</span>.flutcomApp.store;
+
+<span class="text-zinc-500">// 1. Subscribe UI element to changes</span>
+store.<span class="text-sky-400">subscribe</span>((key, val) => {
+  <span class="text-purple-400">if</span>(key === <span class="text-orange-300">'cart_total'</span>) {
+    document.<span class="text-sky-400">getElementById</span>(<span class="text-orange-300">'badge'</span>).textContent = val;
+  }
+});
+
+<span class="text-zinc-500">// 2. Update value anywhere in your app</span>
+store.<span class="text-sky-400">set</span>(<span class="text-orange-300">'cart_total'</span>, 5);</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Styling -->
+    <section id="styling" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Styling & CSS</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Flutcom does not enforce any CSS methodology, but it pairs perfectly
+        with Tailwind CSS via CDN. Keep your core styles in the <code>index.html</code> shell to prevent layout shifts.
+      </p>
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <pre
+            class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">&lt;!-- Inside index.html &lt;head&gt; --&gt;</span>
+&lt;<span class="text-sky-400">script</span> <span class="text-purple-400">src</span>=<span class="text-orange-300">"https://cdn.tailwindcss.com"</span>&gt;&lt;/<span class="text-sky-400">script</span>&gt;
+&lt;<span class="text-sky-400">link</span> <span class="text-purple-400">rel</span>=<span class="text-orange-300">"stylesheet"</span> <span class="text-purple-400">href</span>=<span class="text-orange-300">"assets/css/flutcom.css"</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals -->
+    <section id="modals" class="mb-20 pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Built-in Modals</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">The framework ships with a native modal manager plugin. Modals are
+        physical HTML files stored in <code>resources/modals/</code>.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <div class="text-xs text-zinc-500 mb-3 font-mono">Triggering a modal</div>
+          <div class="overflow-x-auto">
+            <pre class="text-xs font-mono text-zinc-300"><code>&lt;<span class="text-sky-400">button</span> <span class="text-purple-400">onclick</span>=<span class="text-orange-300">"window.flutcomModals.open('modal-deploy')"</span>&gt;
+  Open Deploy
+&lt;/<span class="text-sky-400">button</span>&gt;</code></pre>
+          </div>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-5">
+          <div class="text-xs text-zinc-500 mb-3 font-mono">Closing a modal</div>
+          <div class="overflow-x-auto">
+            <pre class="text-xs font-mono text-zinc-300"><code><span class="text-zinc-500">&lt;!-- Add this attribute to any button --&gt;</span>
+&lt;<span class="text-sky-400">button</span> <span class="text-purple-400">data-modal-close</span>&gt;
+  Close
+&lt;/<span class="text-sky-400">button</span>&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plugins -->
+    <section id="plugins" class="pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Plugins API</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Register global scripts in <code>flutcom.config.js</code> under the
+        <code>resources</code> array. They run once on boot.</p>
+      <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <pre class="p-5 text-sm font-mono text-zinc-300"><code><span class="text-zinc-500">// plugins/my-plugin.js</span>
+<span class="text-sky-400">window</span>.myPlugin = {
+  sayHello: () => alert(<span class="text-orange-300">"Flutcom is awesome!"</span>)
+};</code></pre>
+        </div>
+      </div>
+      <p class="text-zinc-400 leading-relaxed text-sm">Flutcom comes with <strong>Modals</strong> built-in. Use
+        <code>window.flutcomModals.open('modal-id')</code> to trigger them easily.</p>
+    </section>
+
+    <!-- Deployment -->
+    <section id="deployment" class="pt-10 border-t border-zinc-900 scroll-mt-32 lg:scroll-mt-24">
+      <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Deployment</h2>
+      <p class="text-zinc-400 leading-relaxed mb-6">Since Flutcom has no build step and runs entirely in the browser, deployment is as simple as hosting static files.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-6 hover:border-zinc-600 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center border border-white/5 mb-4">
+            <i class="bi bi-github text-white text-lg"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">GitHub Pages</h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">Just push your code to the <code>main</code> branch and enable Pages. No actions required.</p>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-6 hover:border-zinc-600 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center border border-white/5 mb-4">
+            <i class="bi bi-triangle-fill text-white text-lg"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">Vercel</h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">Import your repository. Leave the Build Command and Output Directory completely empty.</p>
+        </div>
+        <div class="bg-[#0d0d0e] border border-zinc-800 rounded-2xl p-6 hover:border-zinc-600 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center border border-white/5 mb-4">
+            <i class="bi bi-hdd-network text-white text-lg"></i>
+          </div>
+          <h4 class="text-white font-bold mb-2">Traditional Hosting</h4>
+          <p class="text-xs text-zinc-500 leading-relaxed">Upload the folder via FTP to your Apache or Nginx server. It works immediately.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+  window.docsScrollTo = function (id, btn) {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = window.innerWidth < 1024 ? 120 : 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // ScrollSpy
+  setTimeout(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          // Update Sidebar
+          const activeBtn = document.querySelector(`aside button[onclick*="'${id}'"]`);
+          if (activeBtn) {
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+              link.className = "w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-900/50 rounded-lg text-sm font-medium transition-colors sidebar-link";
+            });
+            activeBtn.className = "w-full text-left px-3 py-2 bg-zinc-900 text-white rounded-lg text-sm font-medium sidebar-link";
+          }
+
+          // Update Mobile Nav
+          const activeMobileBtn = document.querySelector(`#mobile-docs-nav button[onclick*="'${id}'"]`);
+          if (activeMobileBtn) {
+            document.querySelectorAll('.mobile-link').forEach(link => {
+              link.className = "text-xs font-bold text-zinc-500 uppercase tracking-widest transition-colors mobile-link";
+            });
+            activeMobileBtn.className = "text-xs font-bold text-white uppercase tracking-widest transition-colors mobile-link";
+            // Horizontal scroll only — never touch vertical page scroll
+            const navContainer = document.getElementById('mobile-docs-nav').parentElement;
+            const btnLeft = activeMobileBtn.offsetLeft;
+            const btnWidth = activeMobileBtn.offsetWidth;
+            const containerWidth = navContainer.offsetWidth;
+            navContainer.scrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+          }
+        }
+      });
+    }, { rootMargin: '-100px 0px -70% 0px' });
+
+    document.querySelectorAll('#overview, section[id]').forEach(el => {
+      observer.observe(el);
+    });
+  }, 100);
+</script>
