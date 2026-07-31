@@ -1,0 +1,38 @@
+<main class="min-h-screen bg-black text-white font-sans pt-36 pb-24">
+  <section class="max-w-3xl mx-auto px-6">
+    <div class="flex items-center gap-3 mb-6">
+      <i class="bi bi-signpost-split text-3xl text-emerald-400"></i>
+      <h1 class="text-4xl font-black tracking-tight">Routing API</h1>
+    </div>
+    
+    <p class="text-zinc-400 text-lg mb-10 leading-relaxed">
+      Flutcom handles routes natively using the browser's Hash (#), allowing you to navigate between views without reloading the page or configuring special servers.
+    </p>
+    
+    <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4 text-white">1. Define Routes</h2>
+      <p class="text-zinc-400 mb-4 text-sm">Routes are centrally configured in the <code>flutcom.config.js</code> file by mapping a Hash to a physical HTML file:</p>
+      <pre class="bg-black p-5 rounded-xl text-sm font-mono text-zinc-300 overflow-x-auto border border-zinc-800"><code><span class="text-purple-400">export const</span> routes = {
+  <span class="text-emerald-400">home</span>: <span class="text-orange-300">"resources/views/public/home.html"</span>,
+  <span class="text-emerald-400">about</span>: <span class="text-orange-300">"resources/views/public/about.html"</span>
+};</code></pre>
+    </div>
+ 
+    <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-8">
+      <h2 class="text-xl font-bold mb-4 text-white">2. Navigation</h2>
+      <p class="text-zinc-400 mb-4 text-sm">Simply use conventional <code>&lt;a&gt;</code> tags pointing to the Hash. Flutcom will intercept the click and inject the view instantly:</p>
+      <pre class="bg-black p-5 rounded-xl text-sm font-mono text-zinc-300 overflow-x-auto border border-zinc-800"><code><span class="text-zinc-500">&lt;!-- Navigation without reload --&gt;</span>
+&lt;<span class="text-sky-400">a</span> <span class="text-purple-400">href</span>=<span class="text-orange-300">"#about"</span>&gt;Go to About&lt;/<span class="text-sky-400">a</span>&gt;</code></pre>
+    </div>
+    
+    <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
+      <h2 class="text-xl font-bold mb-4 text-white">3. Hooks (Lifecycle)</h2>
+      <p class="text-zinc-400 mb-4 text-sm">You can execute JavaScript right before entering a route or right after loading it:</p>
+      <pre class="bg-black p-5 rounded-xl text-sm font-mono text-zinc-300 overflow-x-auto border border-zinc-800"><code>app.<span class="text-sky-400">on</span>(<span class="text-orange-300">'view:load'</span>, (viewName, el) => {
+  <span class="text-purple-400">if</span> (viewName === <span class="text-orange-300">'about'</span>) {
+    <span class="text-sky-400">console</span>.log(<span class="text-orange-300">'The About page has been rendered'</span>);
+  }
+});</code></pre>
+    </div>
+  </section>
+</main>
