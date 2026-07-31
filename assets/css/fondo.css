@@ -1,0 +1,39 @@
+/* Fondo Premium Vercel-like */
+.plus-bg {
+  position: relative;
+  background-color: #000000;
+  background-image:
+    linear-gradient(to right, #18181b 1px, transparent 1px),
+    linear-gradient(to bottom, #18181b 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* Animación sutil de "resplandor" o movimiento */
+.plus-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  animation: pulse-glow 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}

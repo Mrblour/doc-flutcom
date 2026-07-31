@@ -1,0 +1,11 @@
+<main class="min-h-screen bg-black text-white font-sans pt-36 pb-24"><section class="max-w-3xl mx-auto px-6"><div class="flex items-center gap-3 mb-6"><i class="bi bi-database text-3xl text-orange-400"></i><h1 class="text-4xl font-black tracking-tight">Reactive Global Store</h1></div><p class="text-zinc-400 text-lg mb-10 leading-relaxed">Flutcom includes a lightweight in-memory state manager that allows you to share data (like session tokens, shopping carts, or preferences) between all your views instantly. It works with a publisher/subscriber model.</p><div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-8"><h2 class="text-xl font-bold mb-4 text-white">1. Read and Write (Getter/Setter)</h2><p class="text-zinc-400 mb-4 text-sm">The store is exposed globally at <code>window.flutcomApp.store</code>:</p><pre class="bg-black p-5 rounded-xl text-sm font-mono text-zinc-300 overflow-x-auto border border-zinc-800"><code><span class="text-purple-400">const</span> store = <span class="text-sky-400">window</span>.flutcomApp.store;
+ 
+ <span class="text-zinc-500">// Write or update a value</span>
+ store.<span class="text-sky-400">set</span>(<span class="text-orange-300">'theme'</span>, <span class="text-orange-300">'dark'</span>);
+ 
+ <span class="text-zinc-500">// Read current value</span>
+ <span class="text-purple-400">const</span> theme = store.<span class="text-sky-400">get</span>(<span class="text-orange-300">'theme'</span>);</code></pre></div><div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8"><h2 class="text-xl font-bold mb-4 text-white">2. Subscribe to Changes</h2><p class="text-zinc-400 mb-4 text-sm">You can subscribe a function to run <strong class="text-white">automatically</strong> every time a value in the store changes. This is perfect for updating the user interface (UI) reactively, like the counter in the Home of this framework:</p><pre class="bg-black p-5 rounded-xl text-sm font-mono text-zinc-300 overflow-x-auto border border-zinc-800"><code>store.<span class="text-sky-400">subscribe</span>((key, val) => {
+  <span class="text-purple-400">if</span> (key === <span class="text-orange-300">'cartTotal'</span>) {
+    <span class="text-sky-400">document</span>.getElementById(<span class="text-orange-300">'cart-badge'</span>).textContent = val;
+  }
+});</code></pre></div></section></main>
