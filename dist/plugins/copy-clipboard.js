@@ -1,1 +1,0 @@
-document.addEventListener("click",t=>{const e=t.target.closest("[data-copy]");if(!e)return;const c=e.getAttribute("data-copy");c&&navigator.clipboard.writeText(c).then(()=>{const t=e.innerHTML;e.innerHTML='<i class="bi bi-check-lg text-emerald-400"></i>',setTimeout(()=>{e.innerHTML=t},2e3)}).catch(t=>{console.error("Failed to copy text: ",t)})});
