@@ -1,1 +1,193 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flutcom - Web Official - spas</title><meta name="title" content="Flutcom - Web Official - spas"><meta name="description" content="The lightweight SPA framework for static sites."><meta name="theme-color" content="#000000"><meta property="og:type" content="website"><meta property="og:url" content="https://mrblour.github.io/doc-flutcom/"><meta property="og:title" content="Flutcom - Web Official - spas"><meta property="og:description" content="The lightweight SPA framework for static sites."><meta property="og:image" content="assets/img/meta.jpeg"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://mrblour.github.io/doc-flutcom/"><meta property="twitter:title" content="Flutcom - Web Official - spas"><meta property="twitter:description" content="The lightweight SPA framework for static sites."><meta property="twitter:image" content="assets/img/meta.jpeg"><meta property="og:site_name" content="Flutcom"><link rel="stylesheet" href="assets/css/flutcom.css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/premium.css"><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{fontFamily:{sans:["Inter","system-ui","sans-serif"]}}}}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="icon" href="assets/img/flutcom.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/img/flutcom.svg"><link rel="shortcut icon" href="assets/img/flutcom.svg" type="image/svg+xml"></head><body><div class="app-shell"><div id="navbar"></div><main id="content"></main><div id="footer"></div></div><script src="plugins/animations.js"></script><script src="plugins/premium-effects.js"></script><script src="plugins/liquid-glass.js"></script><script src="plugins/particle-cubes.js"></script><script type="module" src="flutcom/main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es" class="dark" style="color-scheme: dark;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Content Security Policy: restricts external resource origins to prevent XSS -->
+  <!-- Note: 'unsafe-inline' is required for inline JSON-LD scripts and view scripts injected by _executeScripts() -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self'">
+
+  <!-- Primarios para Posicionamiento en Google -->
+  <title>Flutcom — Micro-framework SPA Ultra Rápido (&lt; 5 KB) | Zero Dependencies</title>
+  <meta name="description" content="Flutcom es un micro-framework SPA de alto rendimiento (&lt; 5 KB) para sitios estáticos en Vanilla JavaScript. Cero dependencias en tiempo de ejecución, DOM nativo directo, enrutamiento Hash Flow instantáneo y componentes modulares.">
+  <meta name="keywords" content="flutcom, micro spa framework, vanilla js spa, zero dependencies javascript, static site framework, direct dom, hash router, frontend framework 2026, fast web framework, web components, github pages spa, reactive vanilla js">
+  <meta name="author" content="yBlour">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- SEO Canónico & Metas Sociales (Open Graph & Twitter) -->
+  <link rel="canonical" href="https://mrblour.github.io/Flutcom/">
+  <meta property="og:site_name" content="Flutcom">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flutcom — Micro-framework SPA Ultra Rápido (&lt; 5 KB) | Zero Dependencies">
+  <meta property="og:description" content="Micro-framework SPA ultra-rápido (&lt; 5 KB) para sitios estáticos. Cero dependencias en runtime, manipulación directa del DOM nativo y componentes modulares.">
+  <meta property="og:url" content="https://mrblour.github.io/Flutcom/">
+  <meta property="og:image" content="https://mrblour.github.io/Flutcom/assets/img/flutcom-banner.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Flutcom Zero-Dependency Micro SPA Architecture">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flutcom — Micro-framework SPA Ultra Rápido (&lt; 5 KB) | Zero Dependencies">
+  <meta name="twitter:description" content="Micro-framework SPA ultra-rápido (&lt; 5 KB) para sitios estáticos. Cero dependencias en runtime, manipulación directa del DOM nativo y componentes modulares.">
+  <meta name="twitter:image" content="https://mrblour.github.io/Flutcom/assets/img/flutcom-banner.svg">
+  <meta name="twitter:creator" content="@yBlour">
+
+  <!-- Datos Estructurados Schema.org Completo para Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mrblour.github.io/Flutcom/#website",
+        "url": "https://mrblour.github.io/Flutcom/",
+        "name": "Flutcom",
+        "alternateName": "Flutcom Micro SPA Framework",
+        "description": "Ultra-fast, zero-dependency micro SPA framework for static sites.",
+        "inLanguage": "es",
+        "publisher": {
+          "@id": "https://mrblour.github.io/Flutcom/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://mrblour.github.io/Flutcom/#organization",
+        "name": "Flutcom",
+        "url": "https://mrblour.github.io/Flutcom/",
+        "logo": "https://mrblour.github.io/Flutcom/assets/img/flutcom.svg"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://mrblour.github.io/Flutcom/#software",
+        "name": "Flutcom",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Front-End Micro Framework",
+        "operatingSystem": "All Modern Web Browsers (Chrome, Firefox, Safari, Edge)",
+        "softwareVersion": "1.4.1",
+        "fileSize": "4.1 KB",
+        "description": "Ultra-fast, zero-dependency micro SPA framework for static sites with native Direct DOM, Hash Flow routing, and reactive directives.",
+        "url": "https://mrblour.github.io/Flutcom/",
+        "downloadUrl": "https://www.npmjs.com/package/create-flutcom",
+        "license": "https://opensource.org/licenses/MIT",
+        "author": {
+          "@type": "Person",
+          "name": "yBlour"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "0 kB external runtime dependencies",
+          "Direct Native DOM manipulation without Virtual DOM diffing",
+          "Client-side Hash Flow router for static hosting",
+          "Declarative reactive directives (fc-model, fc-bind)",
+          "HTML custom tag component architecture",
+          "Zero build required - runs natively in browser"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://mrblour.github.io/Flutcom/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://mrblour.github.io/Flutcom/#home"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://mrblour.github.io/Flutcom/#about"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Components",
+            "item": "https://mrblour.github.io/Flutcom/#components"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Documentation",
+            "item": "https://mrblour.github.io/Flutcom/#docs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Telemetry & Customers",
+            "item": "https://mrblour.github.io/Flutcom/#customers"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Examples",
+            "item": "https://mrblour.github.io/Flutcom/#ejemplos"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="assets/img/flutcom.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/vendor/tailwind/tailwind.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/flutcom.css">
+  <link rel="stylesheet" href="assets/css/premium.css">
+</head>
+
+<body>
+  <!-- Fallback semántico indexable por Googlebot para rastreo sin Javascript -->
+  <noscript>
+    <div style="background:#09090b;color:#f4f4f5;padding:32px;font-family:sans-serif;max-width:960px;margin:0 auto;line-height:1.6;">
+      <h1 style="color:#ffffff;font-size:2rem;margin-bottom:12px;">Flutcom — Micro-framework SPA Ultra Rápido (&lt; 5 KB)</h1>
+      <p style="color:#a1a1aa;margin-bottom:20px;">
+        Flutcom es un micro-framework SPA para sitios estáticos en Vanilla JavaScript. Cero dependencias en tiempo de ejecución, manipulación directa del DOM nativo, enrutamiento Hash Flow instantáneo y componentes modulares.
+      </p>
+      <h2 style="color:#ffffff;font-size:1.3rem;margin-top:24px;">Navegación del Sitio:</h2>
+      <ul style="list-style:none;padding:0;">
+        <li style="margin-bottom:8px;"><a href="#home" style="color:#ffffff;text-decoration:underline;">Home — Inicio</a></li>
+        <li style="margin-bottom:8px;"><a href="#about" style="color:#ffffff;text-decoration:underline;">About — Arquitectura y Rendimiento</a></li>
+        <li style="margin-bottom:8px;"><a href="#docs" style="color:#ffffff;text-decoration:underline;">Docs — Documentación Técnica Completa</a></li>
+        <li style="margin-bottom:8px;"><a href="#components" style="color:#ffffff;text-decoration:underline;">Components — Catálogo de Componentes UI</a></li>
+        <li style="margin-bottom:8px;"><a href="#customers" style="color:#ffffff;text-decoration:underline;">Telemetry &amp; Customers — Telemetría en Vivo</a></li>
+        <li style="margin-bottom:8px;"><a href="#ejemplos" style="color:#ffffff;text-decoration:underline;">Examples — Ejemplos Interactivos</a></li>
+      </ul>
+    </div>
+  </noscript>
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-white">
+    Saltar al contenido principal
+  </a>
+
+  <div class="app-shell">
+    <flut-navbar></flut-navbar>
+    <flut-main id="main-content" role="main" aria-live="polite" aria-label="Contenido de la vista actual"></flut-main>
+    <flut-footer></flut-footer>
+  </div>
+
+  <script src="assets/vendor/anime/anime.min.js"></script>
+  <script type="module" src="plugins/anima.js"></script>
+  <script src="plugins/liquid-glass.js"></script>
+  <script src="plugins/premium-effects.js"></script>
+  <script src="plugins/copy-clipboard.js"></script>
+  <script src="plugins/customer-tracker.js"></script>
+  <script type="module" src="flutcom/main.js"></script>
+</body>
+
+</html>

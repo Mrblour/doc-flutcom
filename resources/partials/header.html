@@ -1,0 +1,57 @@
+<header class="sticky top-0 z-50 w-full bg-black/75 backdrop-blur-md border-b border-white/[0.08]">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Left: Brand Logo & Navigation -->
+    <div class="flex items-center gap-8">
+      <a href="#home" data-view="home" class="flex items-center gap-2.5 text-white no-underline hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-lg p-1">
+        <img src="assets/img/flutcom.svg" alt="Flutcom Logo" width="22" height="22" class="w-5 h-5 object-contain" />
+        <span class="font-bold text-sm tracking-tight text-white">Flutcom</span>
+        <span class="text-[10px] font-mono text-zinc-400 bg-white/[0.04] border border-white/10 px-2 py-0.5 rounded-full">v1.4.1</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-zinc-400">
+        <a href="#home" data-view="home" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1.5 py-0.5">
+          Home
+        </a>
+        <a href="#about" data-view="about" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1.5 py-0.5">
+          About
+        </a>
+        <a href="#customers" data-view="customers" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1.5 py-0.5">
+          Customers
+        </a>
+        <a href="#components" data-view="components" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1.5 py-0.5">
+          Components
+        </a>
+        <a href="#docs" data-view="docs" class="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded px-1.5 py-0.5">
+          Docs
+        </a>
+      </nav>
+    </div>
+
+    <!-- Right: Vercel Style Actions -->
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/Mrblour/Flutcom" target="_blank" rel="noopener noreferrer" class="hidden sm:flex text-xs font-medium text-zinc-400 hover:text-white transition-colors items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+        <i class="bi bi-github text-sm" aria-hidden="true"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="#components" class="vercel-btn-primary h-8 px-3.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation">
+        <span>Get Started</span>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button type="button" data-mobile-toggle aria-label="Toggle mobile navigation menu" class="md:hidden p-1.5 text-zinc-400 hover:text-white rounded-lg border border-white/10 bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+        <i class="bi bi-list text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Navigation Dropdown -->
+  <nav data-mobile-menu hidden class="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl px-6 py-4 flex flex-col gap-3 text-sm font-medium">
+    <a href="#home" data-view="home" class="py-1.5 text-zinc-400 hover:text-white transition-colors">Home</a>
+    <a href="#about" data-view="about" class="py-1.5 text-zinc-400 hover:text-white transition-colors">About</a>
+    <a href="#customers" data-view="customers" class="py-1.5 text-zinc-400 hover:text-white transition-colors">Customers</a>
+    <a href="#components" data-view="components" class="py-1.5 text-zinc-400 hover:text-white transition-colors">Components</a>
+    <a href="#docs" data-view="docs" class="py-1.5 text-zinc-400 hover:text-white transition-colors">Docs</a>
+  </nav>
+</header>

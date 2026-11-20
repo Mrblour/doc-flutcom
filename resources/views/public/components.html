@@ -1,0 +1,400 @@
+<style>
+  /* Visible sleek scrollbar for sidebar (slider) */
+  .slideboard-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .slideboard-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .slideboard-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+  }
+  .slideboard-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.55);
+  }
+</style>
+
+<main class="min-h-screen bg-black text-zinc-300 font-sans flex pt-16">
+
+  <!-- ── PERMANENT LEFT SIDEBAR (SLIDEBOARD CON SCROLLBAR VISIBLE) ── -->
+  <aside class="w-64 sm:w-72 border-r border-white/10 shrink-0 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto px-5 py-8 bg-black slideboard-scroll" aria-label="Component Navigation Sidebar">
+    
+    <!-- Architecture Group -->
+    <div class="mb-8">
+      <h3 class="text-white font-bold text-sm tracking-tight mb-3 px-3">Architecture</h3>
+      <ul class="space-y-1" id="sidebar-components-arch">
+        <li><button type="button" onclick="componentsNavTo('overview', this)" class="w-full text-left px-3 py-2 bg-white/10 text-white rounded-xl text-xs font-mono font-medium sidebar-link transition-colors">01. Overview</button></li>
+        <li><button type="button" onclick="componentsNavTo('syntax', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">02. v1.4.1 Syntax</button></li>
+        <li><button type="button" onclick="componentsNavTo('slots', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">03. Slot Injection</button></li>
+        <li><button type="button" onclick="componentsNavTo('custom', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">04. Custom Components</button></li>
+      </ul>
+    </div>
+
+    <!-- UI Components Group -->
+    <div>
+      <h3 class="text-white font-bold text-sm tracking-tight mb-3 px-3">UI Components</h3>
+      <ul class="space-y-1" id="sidebar-components-list">
+        <li><button type="button" onclick="componentsNavTo('alerts', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">flut-alert</button></li>
+        <li><button type="button" onclick="componentsNavTo('badges', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">flut-badge</button></li>
+        <li><button type="button" onclick="componentsNavTo('buttons', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">flut-button</button></li>
+        <li><button type="button" onclick="componentsNavTo('cards', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">flut-feature-card</button></li>
+        <li><button type="button" onclick="componentsNavTo('table', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">flut-comparison-table</button></li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN DOCUMENTATION & SHOWCASE ─────────────────────── -->
+  <div class="flex-1 min-w-0 px-6 sm:px-10 lg:px-14 py-10 max-w-4xl overflow-x-clip">
+
+    <!-- 01. Overview -->
+    <section id="overview" class="mb-20 scroll-mt-24" aria-labelledby="overview-heading">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-400 mb-6 backdrop-blur-md">
+        <i class="bi bi-puzzle text-white" aria-hidden="true"></i>
+        <span>v1.4.1 Component Architecture</span>
+      </div>
+
+      <h1 id="overview-heading" class="text-4xl sm:text-6xl font-black text-white tracking-tighter mb-6 leading-[0.95]">
+        Modular <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-600">Components.</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-400 leading-relaxed font-normal mb-4 max-w-3xl">
+        Flutcom's component engine resolves raw HTML templates with native declarative custom tags and dynamic props. No Virtual DOM diffing overhead, no mandatory build compilation step. Just high-speed native template interpolation.
+      </p>
+
+      <p class="text-sm text-zinc-500 leading-relaxed mb-10 max-w-3xl">
+        Components are plain <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">.html</code> files stored in <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">resources/components/</code> with <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">{{ prop }}</code> and <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">{{ slot }}</code> placeholders. They are cached in volatile RAM upon initial fetch — subsequent usages incur exactly zero network overhead.
+      </p>
+
+      <!-- 3 Architecture Highlights Bento -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-tags text-sm" aria-hidden="true"></i>
+          </div>
+          <h2 class="text-white font-bold text-sm mb-1 tracking-tight">Custom Tag Shorthand</h2>
+          <p class="text-xs text-zinc-500 leading-relaxed">Mount directly as <code class="text-zinc-300 font-mono">&lt;flut-name&gt;</code> without wrapper elements or repetitive attributes.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-lightning-charge text-sm" aria-hidden="true"></i>
+          </div>
+          <h2 class="text-white font-bold text-sm mb-1 tracking-tight">In-Memory Template Cache</h2>
+          <p class="text-xs text-zinc-500 leading-relaxed">Templates are fetched once and saved in memory. Re-rendering cost is sub-millisecond.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-shield-check text-sm" aria-hidden="true"></i>
+          </div>
+          <h2 class="text-white font-bold text-sm mb-1 tracking-tight">Static Escape &amp; Strict Mode</h2>
+          <p class="text-xs text-zinc-500 leading-relaxed">Precomputed HTML escaping map and strict event handling preventing script injection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. Syntax Comparison (v1.4.1 Updates) -->
+    <section id="syntax" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="syntax-heading">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 id="syntax-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight">Component Syntax Evolution</h2>
+          <p class="text-zinc-500 text-xs sm:text-sm mt-1">Comparing Flutcom v1.4.1 Custom Tag syntax against legacy directive syntax.</p>
+        </div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">v1.4.1 Core</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Modern Syntax Card -->
+        <div class="bg-zinc-950/80 border border-white/15 rounded-2xl overflow-hidden shadow-xl">
+          <div class="px-5 py-3.5 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_#ffffff]"></span>
+              <span class="text-xs font-mono font-bold text-white">1. Modern Custom Tag (v1.4.1)</span>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-400 bg-white/10 px-2 py-0.5 rounded">Preferred</span>
+          </div>
+          <div class="p-5 font-mono text-xs leading-relaxed overflow-x-auto text-zinc-300">
+            <pre class="text-zinc-400"><span class="text-zinc-600">&lt;!-- Clean, zero wrapper element bloat --&gt;</span>
+&lt;<span class="text-white font-bold">flut-alert</span> 
+  <span class="text-zinc-300">icon</span>=<span class="text-zinc-100">"bi bi-shield-check"</span> 
+  <span class="text-zinc-300">title</span>=<span class="text-zinc-100">"Security Patch"</span>&gt;
+  Flutcom v1.4.1 Strict CSP active.
+&lt;/<span class="text-white font-bold">flut-alert</span>&gt;
+
+&lt;<span class="text-white font-bold">flut-comparison-table</span>&gt;&lt;/<span class="text-white font-bold">flut-comparison-table</span>&gt;</pre>
+          </div>
+          <div class="px-5 py-3 border-t border-white/5 bg-white/[0.01] text-[11px] font-mono text-zinc-500">
+            ✓ Auto-mapped to <code class="text-zinc-300">resources/components/*.html</code><br>
+            ✓ Attributes automatically become props<br>
+            ✓ Inner content maps to <code class="text-zinc-300">{{ slot }}</code>
+          </div>
+        </div>
+
+        <!-- Legacy Directive Syntax Card -->
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+          <div class="px-5 py-3.5 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+              <span class="text-xs font-mono text-zinc-400">2. Legacy Directive Syntax</span>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-500 bg-white/5 px-2 py-0.5 rounded">Backwards-compat</span>
+          </div>
+          <div class="p-5 font-mono text-xs leading-relaxed overflow-x-auto text-zinc-400">
+            <pre class="text-zinc-500"><span class="text-zinc-600">&lt;!-- Retained for compatibility with v1.0 - v1.4.0 --&gt;</span>
+&lt;<span class="text-zinc-400 font-medium">div</span> 
+  <span class="text-zinc-400">fc-component</span>=<span class="text-zinc-300">"resources/components/alert.html"</span> 
+  <span class="text-zinc-400">fc-props</span>=<span class="text-zinc-300">'{
+    "icon": "bi bi-shield-check",
+    "title": "Security Patch"
+  }'</span>&gt;
+&lt;/<span class="text-zinc-400 font-medium">div</span>&gt;</pre>
+          </div>
+          <div class="px-5 py-3 border-t border-white/5 bg-white/[0.01] text-[11px] font-mono text-zinc-500">
+            ● Requires explicit file path<br>
+            ● Props passed via escaped JSON string<br>
+            ● Wrapper element is preserved in DOM
+          </div>
+        </div>
+      </div>
+
+      <!-- Security / Performance Note from update.md -->
+      <div class="p-6 border border-white/10 rounded-2xl bg-zinc-950/60 backdrop-blur-md flex items-start gap-4">
+        <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 mt-0.5">
+          <i class="bi bi-shield-lock" aria-hidden="true"></i>
+        </div>
+        <div class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          <span class="text-white font-semibold">Strict Mode &amp; CSP Enforcement in v1.4.1:</span>
+          When <code class="text-white bg-zinc-900 border border-white/10 px-1 py-0.5 rounded font-mono text-xs">site.strictMode: true</code> is configured in <code class="text-white bg-zinc-900 border border-white/10 px-1 py-0.5 rounded font-mono text-xs">flutcom.config.js</code>, component events via <code class="text-white bg-zinc-900 border border-white/10 px-1 py-0.5 rounded font-mono text-xs">fc-click</code> are strictly restricted to frozen <code class="text-white bg-zinc-900 border border-white/10 px-1 py-0.5 rounded font-mono text-xs">Flut.*()</code> methods, neutralizing malicious attribute injection.
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. flut-alert Component -->
+    <section id="alerts" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="alerts-heading">
+      <h2 id="alerts-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">flut-alert</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Informational notifications, system tips, and security notices with icon and slot support.</p>
+
+      <div class="p-6 md:p-8 border border-white/10 rounded-3xl bg-zinc-950/40 mb-6 space-y-4">
+        <flut-alert icon="bi bi-shield-check" title="Content Security Policy Active" description="Restricted to origin-only script execution with frozen Flut public API."></flut-alert>
+        <flut-alert icon="bi bi-cpu" title="Zero Virtual DOM Overhead" description="Direct native DOM manipulation with native template cloning."></flut-alert>
+        <flut-alert icon="bi bi-database-check" title="Volatile Telemetry" description="Session analytics operate 100% in RAM with zero cookies stored.">
+          <span class="text-zinc-500 text-[11px]">→ Verified by Flutcom v1.4.1 Audit Suite</span>
+        </flut-alert>
+      </div>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>HTML Usage</span>
+          <span class="text-zinc-500">resources/views/*.html</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-white font-bold">flut-alert</span> 
+  <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-shield-check"</span> 
+  <span class="text-zinc-400">title</span>=<span class="text-zinc-200">"Content Security Policy Active"</span> 
+  <span class="text-zinc-400">description</span>=<span class="text-zinc-200">"Restricted to origin-only script execution with frozen Flut public API."</span>&gt;
+  &lt;<span class="text-zinc-400">span</span> class=<span class="text-zinc-200">"text-zinc-500"</span>&gt;→ Verified by Flutcom v1.4.1 Audit Suite&lt;/<span class="text-zinc-400">span</span>&gt;
+&lt;/<span class="text-white font-bold">flut-alert</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 04. flut-badge Component -->
+    <section id="badges" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="badges-heading">
+      <h2 id="badges-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">flut-badge</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Compact status indicators and micro-tags. Pass Tailwind utility classes via <code class="text-white font-mono">classes</code>.</p>
+
+      <div class="p-6 md:p-8 border border-white/10 rounded-3xl bg-zinc-950/40 mb-6 flex flex-wrap gap-3 items-center justify-center">
+        <flut-badge icon="bi bi-shield-fill-check" text="v1.4.1 Certified" classes="border-white/20 bg-white/10 text-white"></flut-badge>
+        <flut-badge icon="bi bi-box" text="0 kB Dependencies" classes="border-white/10 text-zinc-300"></flut-badge>
+        <flut-badge icon="bi bi-lightning-fill" text="4.1 KB Engine" classes="border-white/10 text-zinc-300"></flut-badge>
+        <flut-badge icon="bi bi-speedometer2" text="100/100 Lighthouse" classes="border-white/10 text-zinc-300"></flut-badge>
+        <flut-badge icon="bi bi-lock-fill" text="Strict Mode Ready" classes="border-white/10 text-zinc-300"></flut-badge>
+      </div>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>HTML Usage</span>
+          <span class="text-zinc-500">resources/views/*.html</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-white font-bold">flut-badge</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-shield-fill-check"</span> <span class="text-zinc-400">text</span>=<span class="text-zinc-200">"v1.4.1 Certified"</span> <span class="text-zinc-400">classes</span>=<span class="text-zinc-200">"border-white/20 bg-white/10 text-white"</span>&gt;&lt;/<span class="text-white font-bold">flut-badge</span>&gt;
+&lt;<span class="text-white font-bold">flut-badge</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-box"</span> <span class="text-zinc-400">text</span>=<span class="text-zinc-200">"0 kB Dependencies"</span>&gt;&lt;/<span class="text-white font-bold">flut-badge</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 05. flut-button Component -->
+    <section id="buttons" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="buttons-heading">
+      <h2 id="buttons-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">flut-button</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Accessible action buttons formatted strictly according to the Vercel design system.</p>
+
+      <div class="p-6 md:p-8 border border-white/10 rounded-3xl bg-zinc-950/40 mb-6 flex flex-wrap gap-4 items-center justify-center">
+        <flut-button icon="bi bi-lightning-charge-fill" text="Get Started" classes="bg-white text-black hover:bg-zinc-200"></flut-button>
+        <flut-button icon="bi bi-github" text="Star on GitHub" classes="bg-zinc-900 text-white border border-white/10 hover:border-white/25"></flut-button>
+        <flut-button icon="bi bi-file-earmark-code" text="API Reference" classes="bg-transparent text-zinc-400 hover:text-white border border-white/5 hover:border-white/20"></flut-button>
+      </div>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>HTML Usage</span>
+          <span class="text-zinc-500">resources/views/*.html</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-white font-bold">flut-button</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-lightning-charge-fill"</span> <span class="text-zinc-400">text</span>=<span class="text-zinc-200">"Get Started"</span> <span class="text-zinc-400">classes</span>=<span class="text-zinc-200">"bg-white text-black"</span>&gt;&lt;/<span class="text-white font-bold">flut-button</span>&gt;
+&lt;<span class="text-white font-bold">flut-button</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-github"</span> <span class="text-zinc-400">text</span>=<span class="text-zinc-200">"Star on GitHub"</span> <span class="text-zinc-400">classes</span>=<span class="text-zinc-200">"bg-zinc-900 text-white border border-white/10"</span>&gt;&lt;/<span class="text-white font-bold">flut-button</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 06. flut-feature-card Component -->
+    <section id="cards" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="cards-heading">
+      <h2 id="cards-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">flut-feature-card</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Elevated card blocks for architectural features, performance specs, or service highlights.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <flut-feature-card icon="bi bi-hdd-network" title="Direct Hash Routing" description="Navigates via location hash with zero server rewrite requirements."></flut-feature-card>
+        <flut-feature-card icon="bi bi-cpu" title="Direct Native DOM" description="Clones HTML5 templates directly without virtual DOM reconciliation overhead."></flut-feature-card>
+        <flut-feature-card icon="bi bi-shield-check" title="Memory Isolation" description="No lingering listeners or cross-route state leaks on page navigation."></flut-feature-card>
+      </div>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>HTML Usage</span>
+          <span class="text-zinc-500">resources/views/*.html</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-white font-bold">flut-feature-card</span> 
+  <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-hdd-network"</span> 
+  <span class="text-zinc-400">title</span>=<span class="text-zinc-200">"Direct Hash Routing"</span> 
+  <span class="text-zinc-400">description</span>=<span class="text-zinc-200">"Navigates via location hash with zero server rewrite requirements."</span>&gt;
+&lt;/<span class="text-white font-bold">flut-feature-card</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 07. flut-comparison-table Component -->
+    <section id="table" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="table-heading">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 id="table-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight">flut-comparison-table</h2>
+          <p class="text-zinc-500 text-xs sm:text-sm mt-1">Full-featured technical benchmark matrix comparing Flutcom against heavy client frameworks.</p>
+        </div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">Complex Component</span>
+      </div>
+
+      <!-- Live Rendered Component -->
+      <div class="rounded-3xl border border-white/10 overflow-hidden bg-black mb-6">
+        <flut-comparison-table></flut-comparison-table>
+      </div>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>Declarative Custom Tag</span>
+          <span class="text-zinc-500">Option 2 Syntax</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code><span class="text-zinc-600">&lt;!-- Drop anywhere in your views to render the complete comparison matrix --&gt;</span>
+&lt;<span class="text-white font-bold">flut-comparison-table</span>&gt;&lt;/<span class="text-white font-bold">flut-comparison-table</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 08. Slot Injection -->
+    <section id="slots" class="mb-20 pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="slots-heading">
+      <h2 id="slots-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">Slot Injection</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Pass arbitrary HTML as children of custom tags to be injected into <code class="text-white font-mono">{{ slot }}</code>.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 border-b border-white/10 text-xs font-mono text-zinc-400">View Template (Caller)</div>
+          <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code>&lt;<span class="text-white font-bold">flut-alert</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-200">"bi bi-info-circle"</span> <span class="text-zinc-400">title</span>=<span class="text-zinc-200">"Notice"</span>&gt;
+  <span class="text-zinc-500">&lt;!-- Everything here replaces {{ slot }} --&gt;</span>
+  &lt;<span class="text-zinc-300 font-semibold">div</span> class=<span class="text-zinc-100">"font-mono text-xs"</span>&gt;
+    &lt;<span class="text-zinc-300">span</span>&gt;Node Status:&lt;/<span class="text-zinc-300">span</span>&gt;
+    &lt;<span class="text-zinc-300">strong</span> class=<span class="text-white">Live</span>&gt;&lt;/<span class="text-zinc-300">strong</span>&gt;
+  &lt;/<span class="text-zinc-300 font-semibold">div</span>&gt;
+&lt;/<span class="text-white font-bold">flut-alert</span>&gt;</code></pre>
+        </div>
+
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+          <div class="px-4 py-3 border-b border-white/10 text-xs font-mono text-zinc-400">Component Template (alert.html)</div>
+          <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code>&lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"alert-box"</span>&gt;
+  &lt;<span class="text-zinc-400">h4</span>&gt;<span class="text-white font-semibold">{{ title }}</span>&lt;/<span class="text-zinc-400">h4</span>&gt;
+  &lt;<span class="text-zinc-400">p</span>&gt;<span class="text-white font-semibold">{{ description }}</span>&lt;/<span class="text-zinc-400">p</span>&gt;
+
+  <span class="text-zinc-500">&lt;!-- Injected child nodes arrive here: --&gt;</span>
+  &lt;<span class="text-zinc-400">div</span>&gt;<span class="text-white font-bold">{{ slot }}</span>&lt;/<span class="text-zinc-400">div</span>&gt;
+&lt;/<span class="text-zinc-400">div</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. Creating Custom Components -->
+    <section id="custom" class="pt-10 border-t border-white/10 scroll-mt-24" aria-labelledby="custom-heading">
+      <h2 id="custom-heading" class="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">Creating Custom Components</h2>
+      <p class="text-zinc-500 text-xs sm:text-sm mb-6">Build your own reusable components in seconds. Any HTML file in <code class="text-white font-mono">resources/components/*.html</code> is instantly mountable.</p>
+
+      <div class="space-y-6">
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+          <div class="flex items-center gap-2.5 px-4 py-3 border-b border-white/10 text-xs font-mono text-zinc-300">
+            <span class="w-5 h-5 rounded-full bg-white text-black text-[11px] font-black flex items-center justify-center">1</span>
+            <span>Create <code class="text-white">resources/components/stat-box.html</code></span>
+          </div>
+          <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"p-6 rounded-2xl bg-zinc-950 border border-white/10"</span>&gt;
+  &lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"text-3xl font-black font-mono text-white"</span>&gt;<span class="text-white font-bold">{{ value }}</span>&lt;/<span class="text-zinc-400">div</span>&gt;
+  &lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"text-xs font-mono text-zinc-500 mt-1 uppercase tracking-wider"</span>&gt;<span class="text-white font-bold">{{ label }}</span>&lt;/<span class="text-zinc-400">div</span>&gt;
+  &lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"mt-3 text-xs text-zinc-400"</span>&gt;<span class="text-white font-bold">{{ slot }}</span>&lt;/<span class="text-zinc-400">div</span>&gt;
+&lt;/<span class="text-zinc-400">div</span>&gt;</code></pre>
+        </div>
+
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden">
+          <div class="flex items-center gap-2.5 px-4 py-3 border-b border-white/10 text-xs font-mono text-zinc-300">
+            <span class="w-5 h-5 rounded-full bg-white text-black text-[11px] font-black flex items-center justify-center">2</span>
+            <span>Use it declaratively in any view with <code class="text-white">&lt;flut-stat-box&gt;</code></span>
+          </div>
+          <pre class="p-5 text-xs font-mono text-zinc-300 overflow-x-auto"><code>&lt;<span class="text-zinc-400">div</span> class=<span class="text-zinc-200">"grid grid-cols-1 md:grid-cols-3 gap-4"</span>&gt;
+  &lt;<span class="text-white font-bold">flut-stat-box</span> <span class="text-zinc-400">value</span>=<span class="text-zinc-200">"4.1 KB"</span> <span class="text-zinc-400">label</span>=<span class="text-zinc-200">"Bundle Size"</span>&gt;Zero runtime bloat&lt;/<span class="text-white font-bold">flut-stat-box</span>&gt;
+  &lt;<span class="text-white font-bold">flut-stat-box</span> <span class="text-zinc-400">value</span>=<span class="text-zinc-200">"0 ms"</span> <span class="text-zinc-400">label</span>=<span class="text-zinc-200">"Hydration Delay"</span>&gt;Instant DOM mount&lt;/<span class="text-white font-bold">flut-stat-box</span>&gt;
+  &lt;<span class="text-white font-bold">flut-stat-box</span> <span class="text-zinc-400">value</span>=<span class="text-zinc-200">"100%"</span> <span class="text-zinc-400">label</span>=<span class="text-zinc-200">"Native JavaScript"</span>&gt;Zero external packages&lt;/<span class="text-white font-bold">flut-stat-box</span>&gt;
+&lt;/<span class="text-zinc-400">div</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<script>
+  // Smooth scroll to component section
+  window.componentsNavTo = function (id) {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // ScrollSpy for permanent left sidebar
+  setTimeout(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          const activeSidebarBtn = document.querySelector(`aside button.sidebar-link[onclick*="'${id}'"]`);
+          if (activeSidebarBtn) {
+            document.querySelectorAll('aside .sidebar-link').forEach(link => {
+              link.className = "w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link";
+            });
+            activeSidebarBtn.className = "w-full text-left px-3 py-2 bg-white/10 text-white rounded-xl text-xs font-mono font-semibold sidebar-link transition-colors";
+          }
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+
+    document.querySelectorAll('#overview, section[id]').forEach(el => {
+      observer.observe(el);
+    });
+  }, 100);
+</script>

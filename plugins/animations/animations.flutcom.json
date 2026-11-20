@@ -1,0 +1,12 @@
+{
+  "name": "animations",
+  "version": "1.4.1",
+  "description": "Sistema de animaciones reveal e Intersection Observer para Flutcom",
+  "author": "Comunidad Flutcom",
+  "enabled": true,
+  "options": {
+    "threshold": 0.02,
+    "rootMargin": "0px 0px -20px 0px"
+  }
+}
+

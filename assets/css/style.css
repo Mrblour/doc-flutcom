@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+ *  FLUTCOM — style.css
+ *  Base layout & user custom styles.
+ *  Tailwind CSS is used for utility and component styling.
+ * ════════════════════════════════════════════════════════════════════════════ */
+
+html,
+body {
+  height: 100%;
+  overflow-x: clip;
+  max-width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Shell SPA — Sticky Footer layout */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell main,
+.app-shell flut-main,
+.app-shell flut-content {
+  flex: 1;
+}
+
+/* Router active link indicator */
+nav a[data-view].active {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ *  User Custom Styles
+ *  Add your custom styles here when Tailwind utilities are not sufficient.
+ * ───────────────────────────────────────────────────────────────────────────── */

@@ -1,0 +1,13 @@
+{
+  "name": "motion",
+  "version": "1.0.0",
+  "description": "Motor de Motion Graphics y animaciones keyframe de alto rendimiento para Flutcom",
+  "author": "Comunidad Flutcom",
+  "enabled": true,
+  "options": {
+    "textCyclerInterval": 3200,
+    "defaultEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "smoothWidth": true
+  }
+}
+

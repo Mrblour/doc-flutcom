@@ -1,0 +1,571 @@
+<style>
+  /* Custom terminal scrollbar for history list */
+  #customer-history-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  #customer-history-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  #customer-history-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+  }
+  #customer-history-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  /* OpenCode Matrix Corner Crosses */
+  .opencode-cross {
+    position: relative;
+  }
+  .opencode-cross::before {
+    content: '+';
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events-none;
+  }
+  .opencode-cross::after {
+    content: '+';
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events-none;
+  }
+</style>
+
+<main class="min-h-screen bg-black text-white font-sans overflow-hidden pt-24 pb-32 relative">
+  
+  <!-- Premium Monochromatic Hero Background with OpenCode Fine Grid -->
+  <div class="absolute top-0 left-0 right-0 h-[800px] pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+    <!-- Fine 24px Engineering Grid with Top Vignette -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse at top, black 35%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at top, black 35%, transparent 80%);"></div>
+    
+    <!-- Rotating Monochrome Aurora Conic Gradients -->
+    <div class="absolute top-[-30%] sm:top-[-50%] w-[800px] h-[800px] sm:w-[1200px] sm:h-[1200px] opacity-20 mix-blend-screen pointer-events-none">
+      <div class="w-full h-full animate-spin" 
+           style="animation-duration: 30s; background: conic-gradient(from 180deg at 50% 50%, transparent 0%, rgba(255,255,255,0.15) 25%, rgba(161,161,170,0.08) 50%, transparent 100%); border-radius: 50%; filter: blur(95px);">
+      </div>
+    </div>
+
+    <!-- Static Glowing Ambient Core -->
+    <div class="absolute top-[-10%] w-[600px] h-[400px] bg-white/[0.03] rounded-[100%] blur-[90px] pointer-events-none"></div>
+
+    <!-- Bottom Fade to seamlessly merge with next section -->
+    <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- ── HEADER HERO (OPENCODE DEVELOPER TELEMETRY STYLE) ────── -->
+    <div class="mb-14 text-left">
+      <!-- OpenCode Terminal Prompt Pill -->
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-[#08080a] text-xs font-mono text-zinc-300 mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+        <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#ffffff]"></span>
+        <span class="text-zinc-500 font-bold">$</span>
+        <span class="text-zinc-200">flutcom telemetry --watch --in-memory</span>
+        <span class="text-white font-bold animate-pulse">_</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-[0.9]">
+        Session <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-600 drop-shadow-2xl font-mono">Telemetry.</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-400 max-w-2xl font-normal leading-relaxed mb-6 font-sans">
+        Live client-side tracking driven in real-time by <code class="text-white bg-zinc-900 px-2 py-0.5 rounded border border-white/10 font-mono text-xs">CustomerTracker</code>. Observes DOM routing hops and records telemetry in volatile RAM with zero external cookies or network calls.
+      </p>
+
+      <!-- OpenCode Telemetry Status Ribbon -->
+      <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] text-zinc-400 py-2 px-3.5 rounded-xl border border-white/10 bg-zinc-950/80 backdrop-blur-md w-fit mb-8 shadow-inner">
+        <span class="flex items-center gap-1.5 text-zinc-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff]"></span>
+          ENGINE: v1.4.1
+        </span>
+        <span class="text-zinc-700">/</span>
+        <span>HEAP: 4.1 KB</span>
+        <span class="text-zinc-700">/</span>
+        <span>COOKIES: 0</span>
+        <span class="text-zinc-700">/</span>
+        <span class="text-white font-semibold">STREAM: ACTIVE [200 OK]</span>
+      </div>
+    </div>
+
+    <!-- ── METRICS BENTO GRID (4 CARDS — OPENCODE TERMINAL STYLE) ─ -->
+    <section class="max-w-7xl mx-auto w-full border border-white/10 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 bg-zinc-950/60 backdrop-blur-3xl relative z-10 rounded-2xl overflow-hidden mb-10 shadow-2xl" aria-label="Session Metrics Summary">
+      
+      <!-- Metric 1: Total Page Views -->
+      <div class="p-6 sm:p-7 flex flex-col h-full relative group hover:bg-white/[0.02] transition-colors opencode-cross">
+        <div class="flex items-center justify-between text-zinc-500 text-[10px] font-mono font-bold mb-4 uppercase tracking-[0.25em]">
+          <span>// 01_HOPS</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">RAM</span>
+        </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-black tracking-tighter mb-2 text-white font-mono flex items-baseline gap-2">
+            <span id="metric-total-views">0</span>
+            <span class="text-xs text-zinc-500 font-mono font-normal">hops</span>
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed font-normal mt-1">
+            Total hash transitions recorded in client execution stack.
+          </p>
+        </div>
+        <div class="mt-auto pt-5">
+          <div class="text-[9px] font-mono text-zinc-500 border-t border-white/10 pt-3 leading-loose font-medium uppercase">
+            <span class="text-white/50 mr-1.5">›</span> BUS: IN_MEMORY<br>
+            <span class="text-white/50 mr-1.5">›</span> STATUS: LIVE_STREAM
+          </div>
+        </div>
+      </div>
+
+      <!-- Metric 2: Unique Views -->
+      <div class="p-6 sm:p-7 flex flex-col h-full relative group hover:bg-white/[0.02] transition-colors opencode-cross">
+        <div class="flex items-center justify-between text-zinc-500 text-[10px] font-mono font-bold mb-4 uppercase tracking-[0.25em]">
+          <span>// 02_DISCOVERY</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">ROUTES</span>
+        </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-black tracking-tighter mb-2 text-white font-mono flex items-baseline gap-2">
+            <span id="metric-unique-pages">0</span>
+            <span class="text-xs text-zinc-500 font-mono font-normal">views</span>
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed font-normal mt-1">
+            Unique template routes dynamically mounted into active DOM.
+          </p>
+        </div>
+        <div class="mt-auto pt-5">
+          <div class="text-[9px] font-mono text-zinc-500 border-t border-white/10 pt-3 leading-loose font-medium uppercase">
+            <span class="text-white/50 mr-1.5">›</span> CACHE: TRANSIENT<br>
+            <span class="text-white/50 mr-1.5">›</span> SCOPE: VOLATILE
+          </div>
+        </div>
+      </div>
+
+      <!-- Metric 3: Most Visited Page -->
+      <div class="p-6 sm:p-7 flex flex-col h-full relative group hover:bg-white/[0.02] transition-colors overflow-hidden opencode-cross">
+        <div class="flex items-center justify-between text-zinc-500 text-[10px] font-mono font-bold mb-4 uppercase tracking-[0.25em]">
+          <span>// 03_HOTSPOT</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">FREQ</span>
+        </div>
+        <div class="w-full">
+          <div id="metric-active-view" class="text-2xl sm:text-3xl font-black tracking-tighter mb-2 text-white font-mono truncate w-full block">
+            --
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed font-normal mt-1">
+            Hash route exhibiting highest dispatch frequency.
+          </p>
+        </div>
+        <div class="mt-auto pt-5 w-full">
+          <div class="text-[9px] font-mono text-zinc-500 border-t border-white/10 pt-3 leading-loose font-medium uppercase">
+            <span class="text-white/50 mr-1.5">›</span> ALGO: PEAK_HIT<br>
+            <span class="text-white/50 mr-1.5">›</span> DIFF: ZERO_OVERHEAD
+          </div>
+        </div>
+      </div>
+
+      <!-- Metric 4: Last Activity Time -->
+      <div class="p-6 sm:p-7 flex flex-col h-full relative group hover:bg-white/[0.02] transition-colors opencode-cross">
+        <div class="flex items-center justify-between text-zinc-500 text-[10px] font-mono font-bold mb-4 uppercase tracking-[0.25em]">
+          <span>// 04_TIMESTAMP</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-zinc-400">CLOCK</span>
+        </div>
+        <div>
+          <div id="metric-last-activity" class="text-2xl sm:text-3xl font-black tracking-tighter mb-2 text-white font-mono">
+            --
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed font-normal mt-1">
+            Most recent transition timestamp from local browser clock.
+          </p>
+        </div>
+        <div class="mt-auto pt-5">
+          <div class="text-[9px] font-mono text-zinc-500 border-t border-white/10 pt-3 leading-loose font-medium uppercase">
+            <span class="text-white/50 mr-1.5">›</span> LATENCY: &lt; 0.2 ms<br>
+            <span class="text-white/50 mr-1.5">›</span> TICK: HARDWARE
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- ── MAIN DASHBOARD SECTION (OPENCODE TERMINAL SHELL) ────── -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left column: Terminal Activity Shell -->
+      <div class="lg:col-span-8 flex flex-col h-full">
+        <section class="bg-[#050507] border border-white/15 rounded-2xl overflow-hidden shadow-2xl relative flex flex-col h-full" aria-labelledby="activity-log-title">
+          
+          <!-- Terminal Title Bar (OpenCode CLI Window Style) -->
+          <div class="px-5 py-3.5 border-b border-white/10 bg-[#0c0c0e] flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <!-- Terminal Traffic Lights in Monochrome -->
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-white/20 border border-white/30"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-white/10 border border-white/20"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-white/10 border border-white/20"></span>
+              </div>
+              <div class="h-3 w-[1px] bg-white/10 mx-1"></div>
+              <div class="flex items-center gap-2">
+                <i class="bi bi-terminal text-zinc-400 text-xs" aria-hidden="true"></i>
+                <span id="activity-log-title" class="text-zinc-300 font-mono text-xs font-semibold tracking-tight">flutcom@session:~/live_events.log</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <!-- Active Telemetry Status Badge -->
+              <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-200 bg-white/[0.05] border border-white/15 px-2.5 py-0.5 rounded-md flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff]"></span>
+                LIVE_STREAM
+              </span>
+
+              <!-- Clear History Button styled as terminal key -->
+              <button 
+                type="button" 
+                id="btn-clear-history" 
+                aria-label="Clear session tracking telemetry history" 
+                class="text-xs font-mono text-zinc-400 hover:text-white transition-colors px-2.5 py-0.5 rounded-md border border-white/10 hover:border-white/30 bg-zinc-900 flex items-center gap-1.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <i class="bi bi-trash3 text-[10px]" aria-hidden="true"></i>
+                <span>[CLEAR]</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Terminal List Container -->
+          <div id="customer-history-list" class="max-h-[550px] overflow-y-auto bg-black/80 font-mono divide-y divide-white/5" role="feed" aria-live="polite">
+            <!-- Rendered dynamically by CustomerTracker -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column: Path Flow & Interactive Controls -->
+      <div class="lg:col-span-4 flex flex-col gap-6">
+        
+        <!-- Live Path Flow Visualizer (OpenCode Route Trace) -->
+        <section class="bg-[#050507] border border-white/15 rounded-2xl p-5 shadow-xl relative overflow-hidden" aria-labelledby="path-flow-title">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <h2 id="path-flow-title" class="text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+              <i class="bi bi-diagram-3 text-zinc-400" aria-hidden="true"></i> ROUTE_TRACE // FLOW
+            </h2>
+            <span class="text-[9px] font-mono text-zinc-500 uppercase">SUB-MS DISPATCH</span>
+          </div>
+          
+          <p class="text-zinc-400 text-xs leading-relaxed mb-4 font-sans">
+            Sequential pipeline of active navigation hops observed in RAM:
+          </p>
+          
+          <div id="metrics-path-flow" class="flex flex-col gap-2 min-h-[140px] justify-center p-2 border border-white/10 bg-black/60 rounded-xl font-mono text-xs">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- Interactive Hop Simulator (OpenCode CLI Execution Bar) -->
+        <section class="bg-[#050507] border border-white/15 rounded-2xl p-5 relative overflow-hidden" aria-labelledby="hop-simulator-title">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <h2 id="hop-simulator-title" class="text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+              <i class="bi bi-terminal-fill text-zinc-400" aria-hidden="true"></i> HOP_SIMULATOR
+            </h2>
+            <span class="text-[9px] font-mono text-zinc-500">flut.go(route)</span>
+          </div>
+
+          <p class="text-zinc-400 text-xs leading-relaxed mb-4 font-sans">
+            Dispatch instantaneous routing hops to stream real-time logs into the terminal:
+          </p>
+          
+          <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+            <a href="#home" class="flex items-center justify-between px-3 py-2 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 hover:border-white/30 text-zinc-300 hover:text-white transition-all no-underline group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span class="flex items-center gap-1.5">
+                <span class="text-zinc-600 font-bold">$</span>
+                <span>#home</span>
+              </span>
+              <span class="text-[9px] text-zinc-500 group-hover:text-zinc-300 font-mono">[1]</span>
+            </a>
+
+            <a href="#about" class="flex items-center justify-between px-3 py-2 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 hover:border-white/30 text-zinc-300 hover:text-white transition-all no-underline group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span class="flex items-center gap-1.5">
+                <span class="text-zinc-600 font-bold">$</span>
+                <span>#about</span>
+              </span>
+              <span class="text-[9px] text-zinc-500 group-hover:text-zinc-300 font-mono">[2]</span>
+            </a>
+
+            <a href="#components" class="flex items-center justify-between px-3 py-2 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 hover:border-white/30 text-zinc-300 hover:text-white transition-all no-underline group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span class="flex items-center gap-1.5">
+                <span class="text-zinc-600 font-bold">$</span>
+                <span>#components</span>
+              </span>
+              <span class="text-[9px] text-zinc-500 group-hover:text-zinc-300 font-mono">[3]</span>
+            </a>
+
+            <a href="#ejemplos" class="flex items-center justify-between px-3 py-2 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 hover:border-white/30 text-zinc-300 hover:text-white transition-all no-underline group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span class="flex items-center gap-1.5">
+                <span class="text-zinc-600 font-bold">$</span>
+                <span>#ejemplos</span>
+              </span>
+              <span class="text-[9px] text-zinc-500 group-hover:text-zinc-300 font-mono">[4]</span>
+            </a>
+          </div>
+
+          <div class="mt-2.5">
+            <a href="#docs" class="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-zinc-950 hover:bg-zinc-900 border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white transition-all no-underline font-mono text-xs group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span class="flex items-center gap-1.5">
+                <span class="text-zinc-600 font-bold">$</span>
+                <span>#docs (Guide & API)</span>
+              </span>
+              <i class="bi bi-arrow-right text-[11px] text-zinc-500 group-hover:text-white transition-colors" aria-hidden="true"></i>
+            </a>
+          </div>
+        </section>
+
+        <!-- Privacy & Telemetry Architecture Report -->
+        <section class="bg-[#050507] border border-white/15 rounded-2xl p-5 relative overflow-hidden" aria-labelledby="telemetry-guarantees-title">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <i class="bi bi-shield-check text-white text-sm" aria-hidden="true"></i>
+              <h2 id="telemetry-guarantees-title" class="text-white font-bold text-xs font-mono uppercase tracking-wider">PRIVACY_AUDIT</h2>
+            </div>
+            <span class="text-[9px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">COMPLIANT</span>
+          </div>
+
+          <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-200">[x]</span>
+              <span>100% Volatile RAM stack; zero disk cookies.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-200">[x]</span>
+              <span>0 external requests to analytics CDNs or pixels.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-zinc-200">[x]</span>
+              <span>Hardware-clock timestamping with 0ms lag.</span>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+      
+    </div>
+
+  </div>
+</main>
+
+<script>
+  // Dynamically compile statistics based on the tracker history
+  window.updateDashboardMetrics = function() {
+    if (!window.CustomerTracker || !window.CustomerTracker.history) return;
+    const history = window.CustomerTracker.history;
+    
+    // Total Views
+    const totalViewsEl = document.getElementById('metric-total-views');
+    if (totalViewsEl) totalViewsEl.textContent = history.length;
+    
+    // Unique Pages
+    const uniquePagesEl = document.getElementById('metric-unique-pages');
+    if (uniquePagesEl) {
+      const uniqueSet = new Set(history.map(h => h.view));
+      uniquePagesEl.textContent = uniqueSet.size;
+    }
+    
+    // Most Visited Page
+    const activeViewEl = document.getElementById('metric-active-view');
+    if (activeViewEl) {
+      if (history.length > 0) {
+        const counts = {};
+        let maxView = '';
+        let maxCount = 0;
+        history.forEach(h => {
+          counts[h.view] = (counts[h.view] || 0) + 1;
+          if (counts[h.view] > maxCount) {
+            maxCount = counts[h.view];
+            maxView = h.view;
+          }
+        });
+        activeViewEl.textContent = maxView;
+      } else {
+        activeViewEl.textContent = '--';
+      }
+    }
+    
+    // Last Activity
+    const lastActivityEl = document.getElementById('metric-last-activity');
+    if (lastActivityEl) {
+      if (history.length > 0) {
+        const lastEntry = history[history.length - 1];
+        lastActivityEl.textContent = lastEntry.time;
+      } else {
+        lastActivityEl.textContent = '--';
+      }
+    }
+
+    // Path Flow Sequence (OpenCode Terminal Trace)
+    const pathFlowEl = document.getElementById('metrics-path-flow');
+    if (pathFlowEl) {
+      if (history.length === 0) {
+        pathFlowEl.innerHTML = `
+          <div class="flex items-center justify-center py-8 text-zinc-500 text-xs font-mono">
+            Awaiting routing dispatch sequence...
+          </div>
+        `;
+      } else {
+        // Last 4 visited views
+        const lastFour = history.slice(-4);
+        const getIconSimple = (view) => {
+          const clean = view.replace('#', '').toLowerCase();
+          switch (clean) {
+            case 'home': return 'bi-house';
+            case 'about': return 'bi-cpu';
+            case 'customers': return 'bi-activity';
+            case 'components': return 'bi-puzzle';
+            case 'ejemplos': return 'bi-grid';
+            case 'docs': return 'bi-file-earmark-text';
+            default: return 'bi-signpost-2';
+          }
+        };
+
+        pathFlowEl.innerHTML = lastFour.map((entry, idx) => `
+          <div class="flex items-center justify-between p-2 rounded-lg border border-white/10 bg-zinc-950/80 hover:bg-zinc-900/60 transition-colors">
+            <div class="flex items-center gap-2">
+              <span class="text-zinc-600 font-bold">›</span>
+              <span class="text-white text-xs font-mono font-medium">${entry.view}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-white/5 border border-white/10 text-zinc-400 font-mono">DISPATCH</span>
+              <span class="text-zinc-500 text-[10px] font-mono">${entry.time}</span>
+            </div>
+          </div>
+        `).reverse().join('');
+      }
+    }
+  };
+
+  // Wire up clear history button
+  const clearBtn = document.getElementById('btn-clear-history');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      if (window.CustomerTracker) {
+        window.CustomerTracker.clearHistory();
+      }
+    });
+  }
+
+  // Initial render when the view mounts into the DOM
+  if (window.CustomerTracker) {
+    const listEl = document.getElementById('customer-history-list');
+    if (listEl) {
+      window.CustomerTracker.renderHistory(listEl);
+    }
+    window.updateDashboardMetrics();
+  }
+</script>
+
+<script>
+  // Dynamically compile statistics based on the tracker history
+  window.updateDashboardMetrics = function() {
+    if (!window.CustomerTracker || !window.CustomerTracker.history) return;
+    const history = window.CustomerTracker.history;
+    
+    // Total Views
+    const totalViewsEl = document.getElementById('metric-total-views');
+    if (totalViewsEl) totalViewsEl.textContent = history.length;
+    
+    // Unique Pages
+    const uniquePagesEl = document.getElementById('metric-unique-pages');
+    if (uniquePagesEl) {
+      const uniqueSet = new Set(history.map(h => h.view));
+      uniquePagesEl.textContent = uniqueSet.size;
+    }
+    
+    // Most Visited Page
+    const activeViewEl = document.getElementById('metric-active-view');
+    if (activeViewEl) {
+      if (history.length > 0) {
+        const counts = {};
+        let maxView = '';
+        let maxCount = 0;
+        history.forEach(h => {
+          counts[h.view] = (counts[h.view] || 0) + 1;
+          if (counts[h.view] > maxCount) {
+            maxCount = counts[h.view];
+            maxView = h.view;
+          }
+        });
+        activeViewEl.textContent = maxView;
+      } else {
+        activeViewEl.textContent = '--';
+      }
+    }
+    
+    // Last Activity
+    const lastActivityEl = document.getElementById('metric-last-activity');
+    if (lastActivityEl) {
+      if (history.length > 0) {
+        const lastEntry = history[history.length - 1];
+        lastActivityEl.textContent = lastEntry.time;
+      } else {
+        lastActivityEl.textContent = '--';
+      }
+    }
+
+    // Path Flow Sequence
+    const pathFlowEl = document.getElementById('metrics-path-flow');
+    if (pathFlowEl) {
+      if (history.length === 0) {
+        pathFlowEl.innerHTML = `
+          <div class="flex items-center justify-center py-8 text-zinc-500 text-xs font-mono">
+            Awaiting routing sequence...
+          </div>
+        `;
+      } else {
+        // Last 4 visited views
+        const lastFour = history.slice(-4);
+        const getIconSimple = (view) => {
+          const clean = view.replace('#', '').toLowerCase();
+          switch (clean) {
+            case 'home': return 'bi-house';
+            case 'about': return 'bi-cpu';
+            case 'customers': return 'bi-activity';
+            case 'components': return 'bi-puzzle';
+            case 'ejemplos': return 'bi-grid';
+            case 'docs': return 'bi-file-earmark-text';
+            default: return 'bi-signpost-2';
+          }
+        };
+
+        pathFlowEl.innerHTML = lastFour.map((entry, idx) => `
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-white/10 bg-zinc-950/70 hover:bg-zinc-900/40 transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-lg flex items-center justify-center border border-white/10 bg-white/5 text-white text-xs shrink-0">
+                <i class="bi ${getIconSimple(entry.view)}" aria-hidden="true"></i>
+              </span>
+              <span class="text-zinc-200 text-xs font-mono font-medium">${entry.view}</span>
+            </div>
+            <span class="text-zinc-500 text-[10px] font-mono">${entry.time}</span>
+          </div>
+        `).reverse().join('');
+      }
+    }
+  };
+
+  // Wire up clear history button
+  const clearBtn = document.getElementById('btn-clear-history');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      if (window.CustomerTracker) {
+        window.CustomerTracker.clearHistory();
+      }
+    });
+  }
+
+  // Initial render when the view mounts into the DOM
+  if (window.CustomerTracker) {
+    const listEl = document.getElementById('customer-history-list');
+    if (listEl) {
+      window.CustomerTracker.renderHistory(listEl);
+    }
+    window.updateDashboardMetrics();
+  }
+</script>
+

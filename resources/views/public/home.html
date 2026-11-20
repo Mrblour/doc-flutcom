@@ -1,0 +1,626 @@
+<main class="min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black">
+
+  <!-- ── HERO (VERCEL EDITORIAL LAYOUT) ────────────────────────── -->
+  <section class="relative pt-20 pb-24 md:pt-32 md:pb-36 overflow-hidden">
+
+    <!-- Ambient Top Spotlight & Subtle 1px Grid -->
+    <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div class="vercel-spotlight-top"></div>
+      <div class="absolute inset-0 vercel-grid opacity-30"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+      <!-- 3-Column Asymmetrical Hero Grid (Exact Vercel Style) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+        <!-- Column 1: Big Left Headline & CTA Buttons -->
+        <div class="lg:col-span-5 text-left reveal reveal-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-400 mb-6 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+            <span>Flutcom v1.4.1 · Zero Runtime SPA</span>
+          </div>
+
+          <h1 class="text-5xl sm:text-6xl lg:text-[72px] font-bold tracking-[-0.04em] leading-[1.05] text-white text-balance">
+            Zero Runtime<br>Infrastructure
+          </h1>
+
+          <p class="text-base sm:text-lg text-zinc-400 mt-6 leading-relaxed font-light max-w-md text-pretty">
+            Build high-performance static SPAs directly on browser native primitives. Zero runtime dependencies, instant hash routing, and reactive state.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3.5 mt-8">
+            <!-- Botón 1: Redirige a la documentación y guía técnica -->
+            <a href="#docs"
+              class="vercel-btn-primary px-6 h-11 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation inline-flex items-center gap-2">
+              <i class="bi bi-book-half text-sm" aria-hidden="true"></i>
+              <span>Documentation</span>
+            </a>
+
+            <!-- Botón 5: Deploy instantáneo en Vercel con un clic -->
+            <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMrblour%2FFlutcom"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="h-11 px-5 rounded-full border border-white/15 hover:border-white/30 bg-white/[0.04] hover:bg-white/[0.08] text-white text-sm font-semibold inline-flex items-center gap-2 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation group">
+              <svg class="w-3.5 h-3.5 fill-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] transition-all" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+              </svg>
+              <span>Deploy to Vercel</span>
+            </a>
+
+            <!-- Comando CLI npm create -->
+            <div class="flex items-center gap-2 px-4 h-11 rounded-full bg-[#0a0a0a] border border-white/15 hover:border-white/30 transition-colors">
+              <span class="text-zinc-600 font-mono text-xs select-none">$</span>
+              <code class="text-zinc-300 font-mono text-xs">npm create flutcom@latest</code>
+              <button data-copy="npm create flutcom@latest"
+                type="button"
+                aria-label="Copiar comando npm create flutcom@latest"
+                class="text-zinc-500 hover:text-white transition-colors p-1 rounded hover:bg-white/10 ml-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                title="Copiar comando">
+                <i class="bi bi-copy text-xs" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Center Backlit 3D Geometric Prism with Dynamic Motion -->
+        <div class="lg:col-span-4 flex items-center justify-center relative my-8 lg:my-0 reveal reveal-up select-none" data-delay="100">
+          <div id="hero-prism-container" class="relative flex items-center justify-center w-full max-w-[340px] h-[340px] cursor-pointer" style="perspective: 1000px;">
+            <!-- Atmospheric Volumetric Backlight Halo -->
+            <div id="hero-prism-halo" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] bg-gradient-to-t from-transparent via-white/20 to-white/70 rounded-full blur-[55px] pointer-events-none opacity-85"></div>
+
+            <!-- Sleek 3D Metallic Prism Triangle with 2-layer Separation (Float + Tilt) -->
+            <div id="hero-prism-float" class="relative flex items-center justify-center will-change-transform" style="transform-style: preserve-3d;">
+              <div id="hero-prism-tilt" class="relative flex items-center justify-center will-change-transform" style="transform-style: preserve-3d;">
+                <svg id="hero-prism-svg" class="relative w-52 h-52 sm:w-60 sm:h-60 drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="prism-rim" x1="100" y1="20" x2="100" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                    <stop offset="35%" stop-color="#ffffff" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08" />
+                  </linearGradient>
+                  <linearGradient id="prism-left" x1="40" y1="170" x2="100" y2="30" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#0a0a0c" />
+                    <stop offset="70%" stop-color="#141418" />
+                    <stop offset="100%" stop-color="#24242e" />
+                  </linearGradient>
+                  <linearGradient id="prism-right" x1="160" y1="170" x2="100" y2="30" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#050507" />
+                    <stop offset="70%" stop-color="#0e0e12" />
+                    <stop offset="100%" stop-color="#1a1a24" />
+                  </linearGradient>
+                  <linearGradient id="prism-base" x1="100" y1="140" x2="100" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#09090b" />
+                    <stop offset="100%" stop-color="#020203" />
+                  </linearGradient>
+                  <filter id="beacon-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
+                    <feMerge>
+                      <feMergeNode in="blur2" />
+                      <feMergeNode in="blur1" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                <!-- Outer Triangle with glowing rim -->
+                <path d="M100 26 L178 168 H22 Z" fill="#000000" stroke="url(#prism-rim)" stroke-width="1.5" stroke-linejoin="round" />
+                <!-- Left 3D facet -->
+                <path id="prism-facet-left" d="M100 26 L100 150 L22 168 Z" fill="url(#prism-left)" opacity="0.95" />
+                <!-- Right 3D facet -->
+                <path id="prism-facet-right" d="M100 26 L178 168 L100 150 Z" fill="url(#prism-right)" opacity="0.9" />
+                <!-- Bottom 3D facet -->
+                <path d="M22 168 L100 150 L178 168 Z" fill="url(#prism-base)" opacity="0.8" />
+                <!-- Central Ridge Line -->
+                <line x1="100" y1="26" x2="100" y2="150" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" />
+                <!-- Apex Luminous Beacon with breathing flare -->
+                <circle id="hero-prism-beacon" cx="100" cy="26" r="3" fill="#ffffff" filter="url(#beacon-glow)" />
+              </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Right Editorial Points (Exact Vercel Style) -->
+        <div class="lg:col-span-3 text-left lg:text-left flex flex-col justify-center space-y-3 reveal reveal-right" data-delay="200">
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>
+            <span>For static platforms</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]"></span>
+            <span>To ship apps with 0 KB runtime</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>
+            <span>Automated by native DOM</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── MONOCHROME ECOSYSTEM LOGOS (FLUTCOM COMPONENT) ────────── -->
+  <flut-ecosystem-bar version="v1.4.1"></flut-ecosystem-bar>
+
+  <!-- ── SHOWCASE 1: ASYMMETRIC NOTION-STYLE WORKFLOW ─────────── -->
+  <section class="max-w-7xl mx-auto px-6 py-28 border-b border-white/[0.08] relative overflow-hidden">
+    <div class="max-w-3xl mb-16 reveal reveal-left">
+      <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12] text-balance">
+        Build static SPAs on architecture that runs natively in the browser
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Left Side: Interactive App Preview Window (Vercel Style) -->
+      <div class="lg:col-span-8 reveal reveal-left">
+        <div data-spotlight class="vercel-card p-6 sm:p-8 bg-[#070709] border border-white/10 shadow-2xl">
+          <!-- Window Top Bar -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <span class="text-xs font-mono text-zinc-500 ml-2">flutcom-live-state.js</span>
+            </div>
+            <span class="text-xs font-mono text-zinc-300 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full">Reactive Store</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <!-- Code Side -->
+            <div class="font-mono text-xs text-zinc-400 space-y-2 leading-relaxed bg-black/60 p-4 rounded-xl border border-white/5">
+              <p class="text-zinc-600">// Direct Store API &amp; Watchers</p>
+              <p><span class="text-zinc-400">const</span> count = <span class="text-white">Flut</span>.<span class="text-zinc-300">get</span>(<span class="text-zinc-200">'counter'</span>);</p>
+              <p><span class="text-white">Flut</span>.<span class="text-zinc-300">set</span>(<span class="text-zinc-200">'counter'</span>, count + 1);</p>
+              <p class="text-zinc-600 mt-2">// Zero-JS Directives in HTML:</p>
+              <p class="text-zinc-300">&lt;<span class="text-zinc-400">span</span> <span class="text-white">fc-bind</span>=<span class="text-zinc-200">"counter"</span>&gt;&lt;/<span class="text-zinc-400">span</span>&gt;</p>
+              <p class="text-zinc-300">&lt;<span class="text-zinc-400">input</span> <span class="text-white">fc-model</span>=<span class="text-zinc-200">"username"</span> /&gt;</p>
+            </div>
+
+            <!-- Live Interactive State Display -->
+            <div class="flex flex-col items-center justify-center p-6 rounded-xl bg-black/40 border border-white/5 text-center">
+              <span class="text-[11px] font-mono uppercase text-zinc-500 tracking-wider mb-4">Live Reactive Counter</span>
+              <div class="flex items-center justify-center gap-5 mb-4">
+                <button id="home-btn-restar"
+                  type="button"
+                  aria-label="Decrementar contador"
+                  class="w-11 h-11 rounded-full border border-white/15 bg-white/5 hover:bg-white hover:text-black text-white text-lg font-bold transition-colors flex items-center justify-center cursor-pointer active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation">
+                  <i class="bi bi-dash" aria-hidden="true"></i>
+                </button>
+                <span id="home-contador-ui"
+                  class="text-5xl font-black text-white tabular-nums tracking-tighter min-w-[60px] text-center">0</span>
+                <button id="home-btn-sumar"
+                  type="button"
+                  aria-label="Incrementar contador"
+                  class="w-11 h-11 rounded-full border border-white bg-white text-black text-lg font-bold hover:bg-zinc-200 transition-colors flex items-center justify-center cursor-pointer active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation">
+                  <i class="bi bi-plus" aria-hidden="true"></i>
+                </button>
+              </div>
+              <p class="text-[11px] text-zinc-500">State persists across view navigation with zero memory leaks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Editorial Statement & Features List (Exact Vercel Style) -->
+      <div class="lg:col-span-4 reveal reveal-right space-y-8" data-delay="100">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+            Flutcom executes directly on the browser DOM without Virtual DOM diffing.
+          </h3>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed font-light">
+            Eliminate runtime overhead. Components are rendered directly, listeners are cleaned up automatically on navigation, and reactive state updates with primitive equality guards.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 space-y-3">
+          <div class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-2">Features</div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Direct Native DOM Execution</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Zero-JS Declarative Binding (fc-model)</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>In-Memory View Template Caching</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Automatic Subscriber Cleanup (_viewCleanups)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SHOWCASE 2: INVERTED ZAPIER-STYLE SECTION ─────────────── -->
+  <section class="max-w-7xl mx-auto px-6 py-28 border-b border-white/[0.08] relative overflow-hidden">
+    <div class="max-w-3xl mb-16 reveal reveal-left">
+      <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12] text-balance">
+        Ship apps that scale from zero to millions instantly
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Left Side: Editorial Statement & Features List (Exact Vercel Style) -->
+      <div class="lg:col-span-5 reveal reveal-left space-y-8 order-2 lg:order-1" data-delay="100">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+            Deploy your static SPA to any CDN worldwide without server configuration.
+          </h3>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed font-light">
+            Pure static assets. Hash-based client routing means you never need URL rewrites, edge functions, or server infrastructure.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 space-y-3">
+          <div class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 mb-2">Features</div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Client-side Hash Router (#home)</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Dynamic SEO &amp; Schema.org JSON-LD</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>Cybersecurity CSP &amp; Frozen API</span>
+          </div>
+          <div class="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <i class="bi bi-check2 text-white text-base" aria-hidden="true"></i>
+            <span>TypeScript Ready (types/flutcom.d.ts)</span>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMrblour%2FFlutcom" target="_blank" rel="noopener noreferrer"
+            class="vercel-btn-primary px-5 h-10 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+            <span>Deploy to Vercel</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Side: Developer Terminal Window (Vercel Style) -->
+      <div class="lg:col-span-7 reveal reveal-right order-1 lg:order-2">
+        <div data-spotlight class="vercel-card p-6 sm:p-8 bg-[#070709] border border-white/10 shadow-2xl">
+          <!-- Terminal Header -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <div class="w-3 h-3 rounded-full bg-white/20"></div>
+              <span class="text-xs font-mono text-zinc-500 ml-2">package.json — development commands</span>
+            </div>
+            <span class="text-[11px] font-mono text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">14 tests passing</span>
+          </div>
+
+          <!-- Official Script List (Monochrome) -->
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-xl border border-white/10 bg-black/50 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-white font-bold">$ npm run dev</span>
+                <span class="text-zinc-500 hidden sm:inline">Local dev server &amp; live reload</span>
+              </div>
+              <span class="text-[11px] text-zinc-400">Tailwind v4</span>
+            </div>
+
+            <div class="p-3 rounded-xl border border-white/10 bg-black/50 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-white font-bold">$ npm run build</span>
+                <span class="text-zinc-500 hidden sm:inline">Production packaging &amp; sitemap.xml</span>
+              </div>
+              <span class="text-[11px] text-zinc-400">dist/</span>
+            </div>
+
+            <div class="p-3 rounded-xl border border-white/10 bg-black/50 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-white font-bold">$ npm test</span>
+                <span class="text-zinc-500 hidden sm:inline">Vitest automated test suite</span>
+              </div>
+              <span class="text-[11px] text-zinc-400">14/14 passed</span>
+            </div>
+
+            <div class="p-3 rounded-xl border border-white/10 bg-black/50 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-white font-bold">$ npm run check</span>
+                <span class="text-zinc-500 hidden sm:inline">Static TypeScript type checking</span>
+              </div>
+              <span class="text-[11px] text-zinc-400">0 errors</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ARCHITECTURE FEATURE CARDS (VERCEL STYLE) ─────────────── -->
+  <section class="py-28 border-b border-white/[0.08] relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-16 reveal reveal-left">
+        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12] text-balance">
+          Everything you need. <span class="text-zinc-500">Nothing you don't.</span>
+        </h2>
+        <p class="text-lg text-zinc-400 mt-4 font-light text-pretty">
+          Core primitives engineered for static web apps with zero dependencies.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-group" data-delay="100">
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-braces", "titulo": "Zero Runtime Overhead", "descripcion": "Pure ES modules without bulky virtual DOMs, hydration delays, or runtime dependencies.", "botonTexto": "Ver Ejemplos", "enlace": "#ejemplos"}'>
+        </div>
+
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-signpost-split", "titulo": "Declarative Hash Routing", "descripcion": "Fast client-side router with per-route Dynamic SEO, Open Graph, and Google Rich Snippets.", "botonTexto": "Routing Docs", "enlace": "https://mrblour.github.io/doc-flutcom/#docs"}'>
+        </div>
+
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-shield-lock", "titulo": "Middlewares & Guards", "descripcion": "Protect views with client-side guards, Content Security Policy, and frozen public APIs.", "botonTexto": "Security Guide", "enlace": "https://mrblour.github.io/doc-flutcom/#docs"}'>
+        </div>
+
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-lightning-charge", "titulo": "Instant Loads & Cleanup", "descripcion": "Views and components cached in memory with automatic listener cleanups between route navigations.", "botonTexto": "Architecture", "enlace": "#ejemplos"}'>
+        </div>
+
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-plugin", "titulo": "Native Plugin System", "descripcion": "Extensible .flutcom.json and .flutcom.js architecture with parallel boot and lifecycle events.", "botonTexto": "Explore Plugins", "enlace": "https://github.com/Mrblour/Flutcom"}'>
+        </div>
+
+        <div fc-component="resources/components/card.html"
+          fc-props='{"icono": "bi bi-patch-check", "titulo": "TypeScript & Vitest Ready", "descripcion": "Full JSDoc and .d.ts IntelliSense plus 14 automated unit tests testing router, reactivity, and helpers.", "botonTexto": "View Tests", "enlace": "https://github.com/Mrblour/Flutcom"}'>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPARISON TABLE COMPONENT ───────────────────────────── -->
+  <flut-comparison-table></flut-comparison-table>
+
+  <!-- ── CTA BOTTOM: ENCLOSED HALFTONE CROSS MATRIX CONTAINER (MONOCHROMATIC VERCEL STYLE) ──── -->
+  <section id="cta-bottom-section" class="py-20 sm:py-28 px-4 sm:px-6 bg-black relative select-none">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Contenedor acotado con borde fino, esquinas redondeadas y fondo negro profundo -->
+      <div class="relative rounded-3xl border border-white/10 bg-[#060606] overflow-hidden py-16 sm:py-24 px-6 sm:px-12 shadow-[0_0_50px_rgba(0,0,0,0.95)]">
+        
+        <!-- Fondo animado Halftone Cross Radial Matrix (Estilo OnRamp en monocromo puro) -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <img src="assets/img/halftone-pattern.svg" alt="" class="w-full h-full object-cover opacity-80" aria-hidden="true" />
+        </div>
+
+        <!-- Malla geométrica sutil superpuesta para textura táctil -->
+        <div class="absolute inset-0 vercel-grid opacity-10 pointer-events-none z-[1]"></div>
+
+        <!-- Contenido Central Centrado Dentro del Contenedor -->
+        <div class="max-w-2xl mx-auto text-center relative z-10 reveal reveal-up">
+          <div class="vercel-badge vercel-border-laser mb-6 select-none inline-flex">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+            <span>Static Web, Supercharged</span>
+          </div>
+          
+          <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold mb-5 tracking-[-0.03em] text-white text-balance">
+            Start building with <span class="text-white border-b-2 border-white/20 pb-0.5">Flutcom</span> today.
+          </h2>
+          
+          <p class="text-sm sm:text-base text-zinc-400 max-w-lg mx-auto mb-9 leading-relaxed font-light text-pretty">
+            Deploy production-grade static SPAs in seconds. Zero runtime overhead, 100% standard web technologies.
+          </p>
+
+          <!-- Comando CLI Centrado (Estilo Minimalista Terminal Vercel / Bun) -->
+          <div class="flex items-center justify-center">
+            <div class="flex items-center justify-between gap-4 px-5 h-12 rounded-full bg-black/95 border border-white/20 hover:border-white/40 transition-all duration-200 w-full sm:w-auto min-w-[320px] max-w-[420px] shadow-[0_0_25px_rgba(0,0,0,0.8)]">
+              <div class="flex items-center gap-2.5 text-zinc-400 font-mono text-xs sm:text-sm">
+                <span class="text-zinc-600 select-none">$</span>
+                <code class="text-white font-medium">npm create flutcom@latest</code>
+              </div>
+              <button data-copy="npm create flutcom@latest"
+                type="button"
+                aria-label="Copiar comando de instalación npm create flutcom@latest"
+                class="text-zinc-400 hover:text-white transition-colors p-1.5 rounded hover:bg-white/10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white touch-manipulation"
+                title="Copiar comando">
+                <i class="bi bi-copy text-xs" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── View Script: Interactive State & Micro-interactions ─── -->
+<script>
+  (function () {
+    const Flut = window.Flut || (window.flutcomApp && window.flutcomApp.store ? {
+      get: (k) => window.flutcomApp.store.get(k),
+      set: (k, v) => window.flutcomApp.store.set(k, v),
+      watch: (k, fn) => window.flutcomApp.store.subscribe((key, val) => { if (key === k) fn(val); }),
+      increment: (k, step = 1) => {
+        const val = Number(window.flutcomApp.store.get(k) || 0) + step;
+        window.flutcomApp.store.set(k, val);
+      },
+      decrement: (k, step = 1) => {
+        const val = Number(window.flutcomApp.store.get(k) || 0) - step;
+        window.flutcomApp.store.set(k, val);
+      }
+    } : null);
+
+    const ui = document.getElementById('home-contador-ui');
+    const btnSumar = document.getElementById('home-btn-sumar');
+    const btnRestar = document.getElementById('home-btn-restar');
+
+    if (!Flut || !ui) return;
+
+    // Inicializar valor actual desde el Store
+    const currentCount = Flut.get('homeCounter') ?? 0;
+    ui.textContent = currentCount;
+
+    // Suscripción reactiva al Store
+    Flut.watch('homeCounter', (val) => {
+      ui.textContent = val ?? 0;
+      ui.animate([
+        { transform: 'scale(1.2)', color: '#38bdf8' },
+        { transform: 'scale(1)', color: '#ffffff' }
+      ], { duration: 180, easing: 'ease-out' });
+    });
+
+    if (btnSumar) {
+      btnSumar.onclick = () => {
+        Flut.increment('homeCounter', 1);
+      };
+    }
+
+    if (btnRestar) {
+      btnRestar.onclick = () => {
+        Flut.decrement('homeCounter', 1);
+      };
+    }
+
+    // ── 3D Geometric Prism Movement & Anime.js Micro-interactions ──
+    (function initPrismMotion() {
+      const container = document.getElementById('hero-prism-container');
+      const floatEl = document.getElementById('hero-prism-float');
+      const tiltEl = document.getElementById('hero-prism-tilt');
+      const halo = document.getElementById('hero-prism-halo');
+      const beacon = document.getElementById('hero-prism-beacon');
+      const facetLeft = document.getElementById('prism-facet-left');
+      const facetRight = document.getElementById('prism-facet-right');
+
+      if (!container || !floatEl || !tiltEl) return;
+
+      const animeLib = window.anime;
+
+      // 1. Levitation & Floating Loop aislado en floatEl (nunca toca la escala ni el tilt)
+      if (animeLib && typeof animeLib.animate === 'function') {
+        try {
+          animeLib.animate(floatEl, {
+            translateY: [-14, 14],
+            rotateZ: [-1.8, 1.8],
+            duration: 3400,
+            alternate: true,
+            loop: true,
+            ease: 'inOutSine'
+          });
+
+          // Pulsación del halo de luz ambiental
+          if (halo) {
+            animeLib.animate(halo, {
+              scale: [0.9, 1.1],
+              opacity: [0.55, 0.9],
+              duration: 2800,
+              alternate: true,
+              loop: true,
+              ease: 'inOutQuad'
+            });
+          }
+
+          // Luz del vértice / beacon
+          if (beacon) {
+            animeLib.animate(beacon, {
+              r: [2.5, 4],
+              duration: 1800,
+              alternate: true,
+              loop: true,
+              ease: 'inOutSine'
+            });
+          }
+        } catch (e) {
+          floatEl.classList.add('animate-float');
+        }
+      } else {
+        floatEl.classList.add('animate-float');
+      }
+
+      // 2. Interactive 3D Cursor Parallax & Tilt Effect (en capa tiltEl con escala 1 constante)
+      let targetRotX = 0;
+      let targetRotY = 0;
+      let currentRotX = 0;
+      let currentRotY = 0;
+      let isHovering = false;
+      let rafId = null;
+
+      function renderTilt() {
+        // Interpolación lineal suave (lerp)
+        currentRotX += (targetRotX - currentRotX) * 0.08;
+        currentRotY += (targetRotY - currentRotY) * 0.08;
+
+        tiltEl.style.transform = `perspective(1000px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+
+        // Sombras dinámicas según ángulo de inclinación
+        if (facetLeft && facetRight) {
+          const leftOpacity = Math.min(1, Math.max(0.65, 0.95 - (currentRotY * 0.015)));
+          const rightOpacity = Math.min(1, Math.max(0.65, 0.9 + (currentRotY * 0.015)));
+          facetLeft.setAttribute('opacity', leftOpacity.toFixed(2));
+          facetRight.setAttribute('opacity', rightOpacity.toFixed(2));
+        }
+
+        if (isHovering || Math.abs(targetRotX - currentRotX) > 0.03 || Math.abs(targetRotY - currentRotY) > 0.03) {
+          rafId = requestAnimationFrame(renderTilt);
+        } else {
+          rafId = null;
+        }
+      }
+
+      function handleMouseMove(e) {
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        // Calcular offset normalizado (-1 a 1)
+        const deltaX = (e.clientX - centerX) / (rect.width / 2);
+        const deltaY = (e.clientY - centerY) / (rect.height / 2);
+
+        // Inclinación moderada y natural (±12 grados, sin agrandar el tamaño)
+        targetRotY = Math.max(-14, Math.min(14, deltaX * 14));
+        targetRotX = Math.max(-14, Math.min(14, -deltaY * 14));
+
+        isHovering = true;
+        if (!rafId) {
+          rafId = requestAnimationFrame(renderTilt);
+        }
+      }
+
+      function handleMouseLeave() {
+        targetRotX = 0;
+        targetRotY = 0;
+        isHovering = false;
+        if (!rafId) {
+          rafId = requestAnimationFrame(renderTilt);
+        }
+      }
+
+      // 3. Click Micro-interaction: Impulso elástico suave en la cúspide
+      container.addEventListener('click', () => {
+        if (animeLib && typeof animeLib.animate === 'function' && beacon) {
+          try {
+            animeLib.animate(beacon, {
+              r: [
+                { to: 6, duration: 160, ease: 'outQuad' },
+                { to: 3, duration: 350, ease: 'outSine' }
+              ]
+            });
+          } catch(err) {}
+        }
+      });
+
+      container.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('blur', handleMouseLeave);
+    })();
+  })();
+</script>

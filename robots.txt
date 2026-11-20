@@ -1,0 +1,14 @@
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+
+User-agent: Googlebot-Image
+Allow: /assets/img/
+
+User-agent: *
+Allow: /
+Disallow: /run/
+Disallow: /tests/
+Disallow: /create-flutcom/
+
+Sitemap: https://mrblour.github.io/Flutcom/sitemap.xml

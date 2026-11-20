@@ -1,0 +1,747 @@
+<style>
+  /* Visible sleek scrollbar for sidebar (slider) */
+  .slideboard-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .slideboard-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .slideboard-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+  }
+  .slideboard-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.55);
+  }
+</style>
+
+<main class="min-h-screen bg-black text-zinc-300 font-sans flex pt-16">
+
+  <!-- ── PERMANENT LEFT SIDEBAR (SLIDEBOARD CON SCROLLBAR VISIBLE) ── -->
+  <aside class="w-64 sm:w-72 border-r border-white/10 shrink-0 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto px-5 py-8 bg-black slideboard-scroll" aria-label="Documentation Sidebar">
+    
+    <!-- Welcome Section -->
+    <div class="mb-8">
+      <h3 class="text-white font-bold text-sm tracking-tight mb-3 px-3">Welcome</h3>
+      <ul class="space-y-1" id="sidebar-docs-welcome">
+        <li><button type="button" onclick="docsNavTo('intro', this)" class="w-full text-left px-3 py-2 bg-white/10 text-white rounded-xl text-xs font-mono font-medium sidebar-link transition-colors">Why Flutcom?</button></li>
+        <li><button type="button" onclick="docsNavTo('patch', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">v1.4.1 Security Patch</button></li>
+        <li><button type="button" onclick="docsNavTo('installation', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Installation</button></li>
+        <li><button type="button" onclick="docsNavTo('quick-start', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Quick Start</button></li>
+        <li><button type="button" onclick="docsNavTo('structure', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Directory Structure</button></li>
+      </ul>
+    </div>
+
+    <!-- Core Concepts Section -->
+    <div>
+      <h3 class="text-white font-bold text-sm tracking-tight mb-3 px-3">Core Concepts</h3>
+      <ul class="space-y-1" id="sidebar-docs-core">
+        <li><button type="button" onclick="docsNavTo('config', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Configuration</button></li>
+        <li><button type="button" onclick="docsNavTo('routing', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Routing & Guards</button></li>
+        <li><button type="button" onclick="docsNavTo('views', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Creating Views</button></li>
+        <li><button type="button" onclick="docsNavTo('components', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Components (fc-props)</button></li>
+        <li><button type="button" onclick="docsNavTo('directives', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Reactive Directives</button></li>
+        <li><button type="button" onclick="docsNavTo('store', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Global State Store</button></li>
+        <li><button type="button" onclick="docsNavTo('plugins', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Plugins Architecture</button></li>
+        <li><button type="button" onclick="docsNavTo('deployment', this)" class="w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link">Static Deployment</button></li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN DOCUMENTATION CONTENT ────────────────────────── -->
+  <div class="flex-1 min-w-0 px-6 sm:px-10 lg:px-14 py-10 max-w-4xl overflow-x-clip">
+
+    <!-- Header Hero -->
+    <div class="mb-16 scroll-mt-32 lg:scroll-mt-24">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] font-mono text-zinc-300 mb-6 backdrop-blur-md">
+        <i class="bi bi-info-circle text-white text-xs" aria-hidden="true"></i>
+        <span>Introduction</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4 leading-[1.05]">
+        Flutcom Docs
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-400 leading-relaxed font-normal mb-8 max-w-2xl">
+        The complete guide to building zero-dependency, lightning-fast static SPAs. Native DOM manipulation, hash routing, in-memory components, and pure client autonomy.
+      </p>
+
+      <!-- Key Guarantees Pills -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]"></span>
+          0 kB External Runtime
+        </span>
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+          Direct Native DOM
+        </span>
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+          Strict CSP Compliant
+        </span>
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-zinc-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+          Frozen Public API
+        </span>
+      </div>
+    </div>
+
+    <!-- 01. Why Flutcom? -->
+    <section id="intro" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" class="text-3xl font-black text-white tracking-tight mb-4">Why Flutcom?</h2>
+      
+      <p class="text-zinc-400 leading-relaxed text-base mb-4 max-w-3xl">
+        Flutcom is a lightweight Vanilla JS micro-framework that runs entirely inside the browser. It delivers the features expected from modern SPA frameworks — declarative routing, modular components, reactive state management, and lifecycle hooks — without the weight of heavy runtimes, node dependencies, or complex build tooling.
+      </p>
+
+      <p class="text-zinc-500 leading-relaxed text-sm mb-8 max-w-3xl">
+        We designed Flutcom to restore the simplicity of the early web while offering the developer experience of modern frontend engineering. Write plain HTML, CSS, and ES Modules; Flutcom handles the rest with instantaneous page transitions and zero hydration delay.
+      </p>
+
+      <!-- 4 Target Use Cases Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-speedometer2 text-base" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-2">High-Performance Static Sites</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Deliver instant, smooth page transitions without server round-trips. Perfect for marketing, documentation, and product showcase sites.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-layout-wtf text-base" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-2">Internal Tools & Dashboards</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Build reactive admin panels and analytics dashboards using the built-in Global Store and reactive directives without build friction.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-cpu text-base" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-2">Zero Hydration Delay</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">The DOM is interactive on the very first byte. No multi-megabyte JavaScript reconciliation or virtual tree comparison phases.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors group">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 group-hover:scale-105 transition-transform">
+            <i class="bi bi-shield-check text-base" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-2">Supply-Chain Security</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Zero external runtime npm packages means zero risk from malicious downstream updates or security advisories.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. v1.4.1 Security & Performance Patch -->
+    <section id="patch" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="patch-heading">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 id="patch-heading" class="text-3xl font-black text-white tracking-tight">v1.4.1 Security & Performance Patch</h2>
+          <p class="text-zinc-500 text-xs sm:text-sm mt-1">Key architectural safeguards and engine optimizations introduced in the latest release.</p>
+        </div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-white/5 border border-white/10 px-3 py-1 rounded-full">Patch Notes</span>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <!-- Item 1: CSP -->
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_#ffffff]"></span>
+            <h3 class="text-white font-bold text-sm font-mono">1. Content Security Policy (CSP)</h3>
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed mb-3">
+            Injected into <code class="text-white font-mono text-xs">index.html</code> to restrict script origins to origin-only, blocking external script injection vectors while allowing safe inline JSON-LD structured data.
+          </p>
+          <pre class="p-3 bg-black/80 rounded-xl border border-white/5 text-[11px] font-mono text-zinc-400 overflow-x-auto"><code>&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; ..."&gt;</code></pre>
+        </div>
+
+        <!-- Item 2: Frozen API -->
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_#ffffff]"></span>
+            <h3 class="text-white font-bold text-sm font-mono">2. Frozen Public API (Object.freeze)</h3>
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed">
+            The global <code class="text-white font-mono text-xs">window.Flut</code> interface is sealed with <code class="text-white font-mono text-xs">Object.freeze(Flut)</code>, preventing untrusted scripts or third-party widgets from monkey-patching or overriding core router functions.
+          </p>
+        </div>
+
+        <!-- Item 3: Strict Mode -->
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_#ffffff]"></span>
+            <h3 class="text-white font-bold text-sm font-mono">3. fc-click Strict Mode</h3>
+          </div>
+          <p class="text-zinc-400 text-xs leading-relaxed mb-3">
+            Opt-in security flag <code class="text-white font-mono text-xs">site.strictMode: true</code> in <code class="text-white font-mono text-xs">flutcom.config.js</code>. When active, only direct <code class="text-white font-mono text-xs">Flut.method(...)</code> calls are evaluated, rejecting arbitrary expressions.
+          </p>
+          <pre class="p-3 bg-black/80 rounded-xl border border-white/5 text-[11px] font-mono text-zinc-400 overflow-x-auto"><code>export const site = { nombre: "Flutcom", strictMode: true };</code></pre>
+        </div>
+
+        <!-- Item 4: Performance Enhancements -->
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_#ffffff]"></span>
+            <h3 class="text-white font-bold text-sm font-mono">4. Engine Performance Optimizations</h3>
+          </div>
+          <ul class="text-xs text-zinc-400 space-y-2 list-none">
+            <li class="flex items-center gap-2">
+              <i class="bi bi-check2 text-white" aria-hidden="true"></i>
+              <span><strong>Static HTML Escape:</strong> Precomputed regex and escape map once at module initialization.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="bi bi-check2 text-white" aria-hidden="true"></i>
+              <span><strong>Store Equality Guard:</strong> Skips re-renders when primitive values do not change.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="bi bi-check2 text-white" aria-hidden="true"></i>
+              <span><strong>Parallel Plugin Boot:</strong> Loads plugins concurrently via <code class="text-zinc-300 font-mono">Promise.all()</code> (~3× faster boot).</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="bi bi-check2 text-white" aria-hidden="true"></i>
+              <span><strong>DOM Element Caching:</strong> Pre-cached progress bar element and precomputed version query strings.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Installation -->
+    <section id="installation" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="install-heading">
+      <h2 id="install-heading" class="text-3xl font-black text-white tracking-tight mb-4">Installation</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Choose your preferred setup method: scaffold a project via modern CLI, or clone with zero build steps.</p>
+
+      <div class="space-y-6">
+        <!-- Method 1: npm create -->
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+          <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i class="bi bi-terminal text-zinc-400" aria-hidden="true"></i>
+              <span class="text-xs font-mono font-bold text-white">Method 1: Interactive CLI (Recommended)</span>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-400 bg-white/5 px-2 py-0.5 rounded">30s Setup</span>
+          </div>
+          <div class="p-5 font-mono text-xs text-zinc-300 overflow-x-auto space-y-2">
+            <div class="flex items-center justify-between text-zinc-400">
+              <code>$ npm create flutcom@latest my-app</code>
+              <button type="button" data-copy="npm create flutcom@latest my-app" aria-label="Copy CLI command" class="text-zinc-500 hover:text-white p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <i class="bi bi-clipboard" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between text-zinc-400">
+              <code>$ cd my-app &amp;&amp; npm run dev</code>
+              <button type="button" data-copy="cd my-app && npm run dev" aria-label="Copy run dev command" class="text-zinc-500 hover:text-white p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <i class="bi bi-clipboard" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Method 2: Zero Build -->
+        <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+          <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i class="bi bi-git text-zinc-400" aria-hidden="true"></i>
+              <span class="text-xs font-mono font-bold text-white">Method 2: Zero-Build Static Clone</span>
+            </div>
+            <span class="text-[10px] font-mono text-zinc-500 bg-white/5 px-2 py-0.5 rounded">No Node Required</span>
+          </div>
+          <div class="p-5 font-mono text-xs text-zinc-300 overflow-x-auto space-y-2">
+            <div class="flex items-center justify-between text-zinc-400">
+              <code>$ git clone https://github.com/Mrblour/Flutcom.git my-site</code>
+              <button type="button" data-copy="git clone https://github.com/Mrblour/Flutcom.git my-site" aria-label="Copy git clone command" class="text-zinc-500 hover:text-white p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <i class="bi bi-clipboard" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="text-zinc-500 text-[11px] pt-1">
+              # Open index.html in any browser, or serve with: npx serve .
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. Developer Workflow -->
+    <section id="quick-start" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="workflow-heading">
+      <h2 id="workflow-heading" class="text-3xl font-black text-white tracking-tight mb-4">Developer Workflow</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Official npm scripts and quality gates shipped with Flutcom v1.4.1.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="text-xs font-mono font-bold text-white mb-1">npm run dev</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Launches live-server with automatic CSS rebuilding on local port 3000.</p>
+          <code class="text-[11px] font-mono text-zinc-400 bg-black/60 px-2 py-1 rounded border border-white/5 block">http://localhost:3000</code>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="text-xs font-mono font-bold text-white mb-1">npm run build</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Minifies Tailwind CSS v4, generates sitemap.xml, and outputs clean static dist folder.</p>
+          <code class="text-[11px] font-mono text-zinc-400 bg-black/60 px-2 py-1 rounded border border-white/5 block">Output: dist/ (0 runtime bloat)</code>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="text-xs font-mono font-bold text-white mb-1">npm run check</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Runs TypeScript compiler (<code class="font-mono">tsc --noEmit</code>) across all core files and configs.</p>
+          <code class="text-[11px] font-mono text-zinc-400 bg-black/60 px-2 py-1 rounded border border-white/5 block">0 errors guaranteed</code>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="text-xs font-mono font-bold text-white mb-1">npm test</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Executes complete Vitest unit test suite covering router, store, and directives.</p>
+          <code class="text-[11px] font-mono text-zinc-400 bg-black/60 px-2 py-1 rounded border border-white/5 block">14/14 tests passing</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. Directory Structure -->
+    <section id="structure" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="structure-heading">
+      <h2 id="structure-heading" class="text-3xl font-black text-white tracking-tight mb-4">Directory Structure</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Clean, predictable project layout without nested framework folders.</p>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl p-6 font-mono text-xs sm:text-sm text-zinc-400 leading-loose overflow-x-auto">
+        <div class="flex items-center gap-2 text-white">
+          <i class="bi bi-folder-fill text-zinc-400" aria-hidden="true"></i>
+          <span>flutcom/</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Immutable core engine: core.js, flut.js, main.js)</span>
+        </div>
+        <div class="flex items-center gap-2 ml-4 text-white">
+          <i class="bi bi-folder-fill text-zinc-400" aria-hidden="true"></i>
+          <span>plugins/</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Custom telemetry and feature plugins)</span>
+        </div>
+        <div class="flex items-center gap-2 ml-4 text-white">
+          <i class="bi bi-folder-fill text-zinc-400" aria-hidden="true"></i>
+          <span>resources/</span>
+        </div>
+        <div class="flex items-center gap-2 ml-8 text-zinc-300">
+          <i class="bi bi-folder text-zinc-500" aria-hidden="true"></i>
+          <span>components/</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Reusable UI templates: alert.html, badge.html, button.html)</span>
+        </div>
+        <div class="flex items-center gap-2 ml-8 text-zinc-300">
+          <i class="bi bi-folder text-zinc-500" aria-hidden="true"></i>
+          <span>partials/</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Persistent shell layout: header.html, footer.html)</span>
+        </div>
+        <div class="flex items-center gap-2 ml-8 text-white">
+          <i class="bi bi-folder text-zinc-500" aria-hidden="true"></i>
+          <span>views/</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Application page views: home.html, about.html, docs.html)</span>
+        </div>
+        <div class="flex items-center gap-2 mt-2 text-zinc-200">
+          <i class="bi bi-file-earmark-code text-zinc-400" aria-hidden="true"></i>
+          <span>flutcom.config.js</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Central configuration: routes, SEO, strictMode)</span>
+        </div>
+        <div class="flex items-center gap-2 text-zinc-200">
+          <i class="bi bi-filetype-html text-zinc-400" aria-hidden="true"></i>
+          <span>index.html</span>
+          <span class="text-zinc-600 text-[10px] ml-2">(Single page application entry shell)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. Configuration (flutcom.config.js) -->
+    <section id="config" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="config-heading">
+      <h2 id="config-heading" class="text-3xl font-black text-white tracking-tight mb-4">Configuration</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">The central source of truth for routing, metadata, and runtime options.</p>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl mb-6">
+        <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] flex items-center justify-between text-xs font-mono text-zinc-400">
+          <span>flutcom.config.js</span>
+          <span class="text-zinc-500">ES Module</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-zinc-500">// Site metadata &amp; runtime security flags</span>
+<span class="text-white font-semibold">export const</span> site = {
+  nombre: <span class="text-zinc-100">"Flutcom"</span>,
+  version: <span class="text-zinc-100">"1.4.1"</span>,
+  defaultView: <span class="text-zinc-100">"home"</span>,
+  notFoundView: <span class="text-zinc-100">"resources/views/public/404.html"</span>,
+  strictMode: <span class="text-white font-bold">true</span> <span class="text-zinc-500">// v1.4.1 Strict CSP &amp; fc-click enforcement</span>
+};
+
+<span class="text-zinc-500">// Persistent shell layout containers</span>
+<span class="text-white font-semibold">export const</span> partials = {
+  navbar: <span class="text-zinc-100">"resources/partials/header.html"</span>,
+  footer: <span class="text-zinc-100">"resources/partials/footer.html"</span>
+};
+
+<span class="text-zinc-500">// Public routes dictionary</span>
+<span class="text-white font-semibold">export const</span> routes = {
+  home: { view: <span class="text-zinc-100">"resources/views/public/home.html"</span>, title: <span class="text-zinc-100">"Home"</span> },
+  about: { view: <span class="text-zinc-100">"resources/views/public/about.html"</span>, title: <span class="text-zinc-100">"About"</span> },
+  docs: { view: <span class="text-zinc-100">"resources/views/public/docs.html"</span>, title: <span class="text-zinc-100">"Documentation"</span> }
+};</code></pre>
+      </div>
+    </section>
+
+    <!-- 07. Routing & Guards -->
+    <section id="routing" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="routing-heading">
+      <h2 id="routing-heading" class="text-3xl font-black text-white tracking-tight mb-4">Routing &amp; Guards</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Navigation relies on the native hash flow (<code class="text-white font-mono">#home</code>). Protect sensitive views with synchronous or asynchronous guards.</p>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+        <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] text-xs font-mono text-zinc-400">
+          <span>flutcom/main.js — Route Guards</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-white font-semibold">import</span> { Flutcom } <span class="text-white font-semibold">from</span> <span class="text-zinc-100">'./core.js'</span>;
+<span class="text-white font-semibold">import</span> { routes, partials } <span class="text-white font-semibold">from</span> <span class="text-zinc-100">'../flutcom.config.js'</span>;
+
+<span class="text-white font-semibold">const</span> app = <span class="text-white font-semibold">new</span> Flutcom({ routes, partials });
+
+<span class="text-zinc-500">// Enforce authentication before loading the admin view</span>
+app.guard(<span class="text-zinc-100">'dashboard'</span>, () => {
+  <span class="text-white font-semibold">const</span> token = sessionStorage.getItem(<span class="text-zinc-100">'auth_token'</span>);
+  <span class="text-white font-semibold">return</span> Boolean(token); <span class="text-zinc-500">// False redirects immediately to login</span>
+}, <span class="text-zinc-100">'login'</span>);
+
+app.init();</code></pre>
+      </div>
+    </section>
+
+    <!-- 08. View Architecture -->
+    <section id="views" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="views-heading">
+      <h2 id="views-heading" class="text-3xl font-black text-white tracking-tight mb-4">View Architecture</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Views are clean HTML fragments mounted directly into <code class="text-white font-mono">&lt;flut-main&gt;</code>.</p>
+
+      <div class="p-6 border border-white/10 bg-zinc-950/60 rounded-2xl mb-6">
+        <h3 class="text-white font-bold text-sm mb-3">View Authoring Rules:</h3>
+        <ul class="space-y-2 text-xs text-zinc-400 list-none">
+          <li class="flex items-start gap-2.5">
+            <i class="bi bi-x-circle text-zinc-500 mt-0.5" aria-hidden="true"></i>
+            <span>Do <strong>not</strong> include <code class="text-white font-mono">&lt;html&gt;</code>, <code class="text-white font-mono">&lt;head&gt;</code>, or <code class="text-white font-mono">&lt;body&gt;</code> tags.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="bi bi-check2 text-white mt-0.5" aria-hidden="true"></i>
+            <span>Start directly with semantic containers like <code class="text-white font-mono">&lt;main&gt;</code>, <code class="text-white font-mono">&lt;article&gt;</code>, or <code class="text-white font-mono">&lt;section&gt;</code>.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="bi bi-check2 text-white mt-0.5" aria-hidden="true"></i>
+            <span>Inline <code class="text-white font-mono">&lt;script&gt;</code> tags are safely extracted and executed by <code class="text-white font-mono">_executeScripts()</code> on each mount.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 09. Components & Modern Custom Tags -->
+    <section id="components" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="comps-heading">
+      <h2 id="comps-heading" class="text-3xl font-black text-white tracking-tight mb-4">Components &amp; Custom Tags</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Flutcom v1.4.1 offers declarative Custom Tag component syntax with attribute props and slot support.</p>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl mb-6">
+        <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] text-xs font-mono text-zinc-400">
+          <span>Component Usage Comparison</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-zinc-500">&lt;!-- 1. Modern Custom Tag Shorthand (v1.4.1 Preferred) --&gt;</span>
+&lt;<span class="text-white font-bold">flut-alert</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-100">"bi bi-shield-check"</span> <span class="text-zinc-400">title</span>=<span class="text-zinc-100">"Security Notice"</span>&gt;
+  Active session telemetry in volatile RAM.
+&lt;/<span class="text-white font-bold">flut-alert</span>&gt;
+
+&lt;<span class="text-white font-bold">flut-badge</span> <span class="text-zinc-400">icon</span>=<span class="text-zinc-100">"bi bi-box"</span> <span class="text-zinc-400">text</span>=<span class="text-zinc-100">"0 kB Deps"</span>&gt;&lt;/<span class="text-white font-bold">flut-badge</span>&gt;
+&lt;<span class="text-white font-bold">flut-comparison-table</span>&gt;&lt;/<span class="text-white font-bold">flut-comparison-table</span>&gt;
+
+<span class="text-zinc-500">&lt;!-- 2. Legacy Directive Syntax (v1.0 - v1.4.0 Backwards Compatible) --&gt;</span>
+&lt;<span class="text-zinc-400 font-semibold">div</span> <span class="text-zinc-400">fc-component</span>=<span class="text-zinc-100">"resources/components/badge.html"</span> <span class="text-zinc-400">fc-props</span>=<span class="text-zinc-100">'{"text": "Stable"}'</span>&gt;&lt;/<span class="text-zinc-400 font-semibold">div</span>&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- 10. Reactive Directives -->
+    <section id="directives" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="directives-heading">
+      <h2 id="directives-heading" class="text-3xl font-black text-white tracking-tight mb-4">Reactive Directives</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Built-in HTML attributes that bind DOM elements to store values without writing custom listeners.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="font-mono text-xs font-bold text-white mb-1">fc-bind="key"</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">One-way binding. Injects store value into element textContent and updates reactively.</p>
+          <pre class="p-2.5 bg-black/80 rounded-lg border border-white/5 text-[11px] font-mono text-zinc-400">&lt;span fc-bind="cart_total"&gt;&lt;/span&gt;</pre>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="font-mono text-xs font-bold text-white mb-1">fc-model="key"</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Two-way data binding for input, textarea, select, and checkbox elements.</p>
+          <pre class="p-2.5 bg-black/80 rounded-lg border border-white/5 text-[11px] font-mono text-zinc-400">&lt;input type="text" fc-model="user_name" /&gt;</pre>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="font-mono text-xs font-bold text-white mb-1">fc-show="key"</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Toggles display:none based on truthiness of store value (supports ! for negation).</p>
+          <pre class="p-2.5 bg-black/80 rounded-lg border border-white/5 text-[11px] font-mono text-zinc-400">&lt;div fc-show="is_logged_in"&gt;Welcome!&lt;/div&gt;</pre>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10">
+          <div class="font-mono text-xs font-bold text-white mb-1">fc-go="route"</div>
+          <p class="text-xs text-zinc-500 leading-relaxed mb-3">Navigates to route on click without writing JavaScript event handlers.</p>
+          <pre class="p-2.5 bg-black/80 rounded-lg border border-white/5 text-[11px] font-mono text-zinc-400">&lt;button fc-go="about"&gt;About&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Global State Store -->
+    <section id="store" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="store-heading">
+      <h2 id="store-heading" class="text-3xl font-black text-white tracking-tight mb-4">Global State Store</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Reactive state container with equality guards to skip redundant renders.</p>
+
+      <div class="bg-zinc-950/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+        <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02] text-xs font-mono text-zinc-400">
+          <span>JavaScript Store Interaction</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-white font-semibold">import</span> { Flut } <span class="text-white font-semibold">from</span> <span class="text-zinc-100">'./flutcom/flut.js'</span>;
+
+<span class="text-zinc-500">// 1. Set values in the global store</span>
+Flut.set(<span class="text-zinc-100">'user_theme'</span>, <span class="text-zinc-100">'dark'</span>);
+
+<span class="text-zinc-500">// 2. Read values</span>
+<span class="text-white font-semibold">const</span> theme = Flut.get(<span class="text-zinc-100">'user_theme'</span>);
+
+<span class="text-zinc-500">// 3. Subscribe to reactive changes</span>
+Flut.subscribe((key, val) => {
+  <span class="text-white font-semibold">if</span> (key === <span class="text-zinc-100">'user_theme'</span>) {
+    document.documentElement.className = val;
+  }
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- 12. Plugins Architecture (v1.4.1 Updates) -->
+    <section id="plugins" class="mb-20 pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="plugins-heading">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 id="plugins-heading" class="text-3xl font-black text-white tracking-tight">Plugins Architecture</h2>
+          <p class="text-zinc-500 text-xs sm:text-sm mt-1">Modular extension engine featuring non-blocking parallel initialization and memory leak protection.</p>
+        </div>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full">v1.4.1 Engine</span>
+      </div>
+
+      <p class="text-zinc-400 text-sm leading-relaxed mb-6 max-w-3xl">
+        Flutcom plugins are self-contained ES modules that hook into the application lifecycle without altering framework core files. In <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">v1.4.1</code>, plugin initialization was overhauled from sequential iteration to concurrent execution via <code class="text-white bg-zinc-900 border border-white/10 px-1.5 py-0.5 rounded font-mono text-xs">Promise.all()</code>, achieving ~3&times; faster application bootstrap.
+      </p>
+
+      <!-- 3 Plugin Pillars Bento -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3">
+            <i class="bi bi-cpu text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1">Parallel Bootstrapping</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">All registered plugins load simultaneously using <code class="text-zinc-300 font-mono">Promise.all()</code>. If one plugin throws, others continue uninterrupted.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3">
+            <i class="bi bi-arrow-repeat text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1">Lifecycle Hooks</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Exposes <code class="text-zinc-300 font-mono">init(app, cfg)</code> for setup and <code class="text-zinc-300 font-mono">onNavigate(view, container)</code> to refresh DOM interactions per route.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white mb-3">
+            <i class="bi bi-shield-check text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1">Memory Leak Safeguards</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed"><code class="text-zinc-300 font-mono">animations</code> disconnects and unobserves DOM nodes on route transitions, preventing retain cycles.</p>
+        </div>
+      </div>
+
+      <!-- Plugin Directory Structure & Dual-File Format -->
+      <div class="mb-8 p-5 rounded-2xl bg-zinc-950/80 border border-white/10">
+        <h3 class="text-white font-bold text-xs font-mono uppercase tracking-widest mb-3 flex items-center gap-2">
+          <i class="bi bi-folder2 text-zinc-400" aria-hidden="true"></i>
+          Plugin Dual-File Architecture
+        </h3>
+        <p class="text-xs text-zinc-400 mb-4 leading-relaxed">
+          Every native plugin resides in its own folder inside <code class="text-white bg-zinc-900 border border-white/10 px-1 py-0.5 rounded font-mono text-xs">plugins/&lt;name&gt;/</code> with two companion files:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-white font-bold block mb-1">1. Manifest (.json)</span>
+            <span class="text-zinc-500 block text-[11px] mb-2">plugins/&lt;name&gt;/&lt;name&gt;.flutcom.json</span>
+            <p class="text-zinc-400 font-sans text-xs">Defines metadata, version, and the <code class="text-zinc-200 font-mono">enabled: true/false</code> toggle.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-white font-bold block mb-1">2. Implementation (.js)</span>
+            <span class="text-zinc-500 block text-[11px] mb-2">plugins/&lt;name&gt;/&lt;name&gt;.flutcom.js</span>
+            <p class="text-zinc-400 font-sans text-xs">Exports an object implementing <code class="text-zinc-200 font-mono">init()</code> and <code class="text-zinc-200 font-mono">onNavigate()</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Authoring a Custom Plugin Code Example -->
+      <div class="rounded-2xl border border-white/10 bg-zinc-950/80 overflow-hidden mb-8">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-white/[0.02]">
+          <span class="text-xs font-mono text-zinc-400">plugins/telemetry/telemetry.flutcom.js</span>
+          <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Custom Plugin Example</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-white font-semibold">export default</span> {
+  name: <span class="text-zinc-100">'telemetry'</span>,
+  version: <span class="text-zinc-100">'1.0.0'</span>,
+
+  <span class="text-zinc-500">// Called once when Flutcom boots (in parallel with other plugins)</span>
+  <span class="text-white font-semibold">init</span>(app, config) {
+    <span class="text-white font-semibold">this</span>.app = app;
+    <span class="text-white font-semibold">this</span>.startTime = Date.now();
+    console.info(<span class="text-zinc-100">'[Telemetry] Initialized'</span>);
+  },
+
+  <span class="text-zinc-500">// Called on every client route transition</span>
+  <span class="text-white font-semibold">onNavigate</span>(viewName, container) {
+    <span class="text-white font-semibold">const</span> renderTime = Date.now() - <span class="text-white font-semibold">this</span>.startTime;
+    console.info(<span class="text-zinc-100">`[Telemetry] View switched to #${viewName} in ${renderTime}ms`</span>);
+  }
+};</code></pre>
+      </div>
+
+      <!-- Configuration Registration Code Example -->
+      <div class="rounded-2xl border border-white/10 bg-zinc-950/80 overflow-hidden mb-8">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-white/[0.02]">
+          <span class="text-xs font-mono text-zinc-400">flutcom.config.js</span>
+          <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Plugin Registration</span>
+        </div>
+        <pre class="p-5 text-xs font-mono text-zinc-300 leading-relaxed overflow-x-auto"><code><span class="text-zinc-500">// Register plugins to boot simultaneously in parallel</span>
+<span class="text-white font-semibold">export const</span> plugins = [
+  <span class="text-zinc-100">"timer"</span>,       <span class="text-zinc-500">// Boot time and runtime benchmark</span>
+  <span class="text-zinc-100">"menu"</span>,        <span class="text-zinc-500">// Accessible navigation and mobile drawer</span>
+  <span class="text-zinc-100">"animations"</span>,  <span class="text-zinc-500">// Reveal animations with auto unobserve/disconnect (v1.4.1)</span>
+  <span class="text-zinc-100">"responsive"</span>,  <span class="text-zinc-500">// Reactive viewport breakpoint detection</span>
+  <span class="text-zinc-100">"motion"</span>,      <span class="text-zinc-500">// Page-to-page transition smoothing</span>
+];</code></pre>
+      </div>
+
+      <!-- Native Plugins Inventory Table -->
+      <div class="rounded-2xl border border-white/10 overflow-hidden">
+        <div class="px-5 py-3 border-b border-white/10 bg-white/[0.02]">
+          <h3 class="text-xs font-mono text-zinc-300 uppercase tracking-widest">Built-in Plugins Reference</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-white/[0.02] text-zinc-400 border-b border-white/10">
+              <tr>
+                <th class="py-3 px-4">Plugin</th>
+                <th class="py-3 px-4">Type</th>
+                <th class="py-3 px-4">v1.4.1 Update</th>
+                <th class="py-3 px-4">Description</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-zinc-300">
+              <tr>
+                <td class="py-3 px-4 text-white font-semibold">animations</td>
+                <td class="py-3 px-4 text-zinc-400">Native Plugin</td>
+                <td class="py-3 px-4 text-zinc-300">unobserve &amp; disconnect()</td>
+                <td class="py-3 px-4 text-zinc-400 font-sans">Scroll-reveal animations with automatic memory leak cleanup on route change.</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-white font-semibold">menu</td>
+                <td class="py-3 px-4 text-zinc-400">Native Plugin</td>
+                <td class="py-3 px-4 text-zinc-300">Parallel bootstrap</td>
+                <td class="py-3 px-4 text-zinc-400 font-sans">Accessible navigation control, mobile toggles, and dropdown management.</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-white font-semibold">timer</td>
+                <td class="py-3 px-4 text-zinc-400">Native Plugin</td>
+                <td class="py-3 px-4 text-zinc-300">Parallel bootstrap</td>
+                <td class="py-3 px-4 text-zinc-400 font-sans">High-resolution performance counters for DOM load and view render phases.</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-white font-semibold">responsive</td>
+                <td class="py-3 px-4 text-zinc-400">Native Plugin</td>
+                <td class="py-3 px-4 text-zinc-300">Parallel bootstrap</td>
+                <td class="py-3 px-4 text-zinc-400 font-sans">Dynamic viewport detection that attaches breakpoint classes to document root.</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 text-white font-semibold">customer-tracker</td>
+                <td class="py-3 px-4 text-zinc-400">Resource Module</td>
+                <td class="py-3 px-4 text-zinc-300">Pure RAM store</td>
+                <td class="py-3 px-4 text-zinc-400 font-sans">Client-side session telemetry and event tracking without external cookies.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. Static Deployment -->
+    <section id="deployment" class="pt-10 border-t border-white/10 scroll-mt-32 lg:scroll-mt-24" aria-labelledby="deploy-heading">
+      <h2 id="deploy-heading" class="text-3xl font-black text-white tracking-tight mb-4">Static Deployment</h2>
+      <p class="text-zinc-400 text-sm mb-6 leading-relaxed">Deploy anywhere in seconds. Zero backend servers or build compute required.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4">
+            <i class="bi bi-triangle-fill text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1.5">Vercel</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Import Git repo. Leave Build Command and Output Directory empty. Live in 10s.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4">
+            <i class="bi bi-github text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1.5">GitHub Pages</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Push to main branch. Enable GitHub Pages in repository settings. Zero setup.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-950/60 border border-white/10 hover:border-white/20 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4">
+            <i class="bi bi-hdd-network text-sm" aria-hidden="true"></i>
+          </div>
+          <h3 class="text-white font-bold text-sm mb-1.5">Edge CDN / Cloudflare</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">Deploy directly to Cloudflare Pages, Netlify, or any static AWS S3 / Nginx host.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<script>
+  // Smooth scroll to documentation section
+  window.docsNavTo = function (id) {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Backwards compatibility alias
+  window.docsScrollTo = window.docsNavTo;
+
+  // ScrollSpy: highlight active link in the permanent sidebar
+  setTimeout(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+
+          const activeSidebarBtn = document.querySelector(`aside button.sidebar-link[onclick*="'${id}'"]`);
+          if (activeSidebarBtn) {
+            document.querySelectorAll('aside .sidebar-link').forEach(link => {
+              link.className = "w-full text-left px-3 py-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl text-xs font-mono font-medium transition-colors sidebar-link";
+            });
+            activeSidebarBtn.className = "w-full text-left px-3 py-2 bg-white/10 text-white rounded-xl text-xs font-mono font-semibold sidebar-link transition-colors";
+          }
+        }
+      });
+    }, { rootMargin: '-80px 0px -70% 0px' });
+
+    document.querySelectorAll('section[id]').forEach(el => {
+      observer.observe(el);
+    });
+  }, 100);
+</script>
+

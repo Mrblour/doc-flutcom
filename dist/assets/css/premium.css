@@ -1,0 +1,783 @@
+/**
+ * styles-premium.css — Mejoras estéticas de alto nivel
+ * Añade efectos de brillo, cuadrículas de fondo y animaciones sutiles.
+ */
+
+:root {
+    --brand-glow: rgba(139, 92, 246, 0.5);
+    --grid-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Global mobile overflow safeguard */
+/* NOTE: 'clip' is used instead of 'hidden' — 'hidden' creates a scroll container
+   which breaks position:sticky on children (like the sidebar). 'clip' only clips
+   visually without affecting scroll behavior. */
+html, body {
+    overflow-x: clip;
+    max-width: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Fondo de cuadrícula global (estilo Dashboard) */
+.bg-grid {
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Efecto de flotación suave */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Halftone Ambient Floating & Rotation */
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+}
+
+@keyframes spinSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinReverseSlow {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-float-slow {
+    animation: floatSlow 7s ease-in-out infinite;
+}
+
+.animate-spin-extremely-slow {
+    animation: spinSlow 55s linear infinite;
+}
+
+.animate-spin-reverse-extremely-slow {
+    animation: spinReverseSlow 65s linear infinite;
+}
+
+/* Halftone Sphere Traversing Animation (Recorrido continuo por todo el componente) */
+@keyframes halftoneTraverse {
+    0% {
+        transform: translate(-10%, -50%) rotate(0deg) scale(0.95);
+        opacity: 0.18;
+    }
+    35% {
+        transform: translate(35vw, -50%) rotate(140deg) scale(1.05);
+        opacity: 0.28;
+    }
+    50% {
+        transform: translate(50vw, -45%) rotate(200deg) scale(1);
+        opacity: 0.24;
+    }
+    75% {
+        transform: translate(75vw, -55%) rotate(300deg) scale(1.08);
+        opacity: 0.28;
+    }
+    100% {
+        transform: translate(105vw, -50%) rotate(420deg) scale(0.95);
+        opacity: 0.18;
+    }
+}
+
+.animate-halftone-traverse {
+    animation: halftoneTraverse 26s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+    will-change: transform, opacity;
+}
+
+
+
+/* Tarjeta estilo Bento con borde luminoso al hover */
+.bento-card {
+    position: relative;
+    background: rgba(9, 9, 11, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bento-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.bento-card:hover::before {
+    opacity: 1;
+}
+
+/* Brillo perimetral para elementos destacados */
+.glow-border {
+    position: relative;
+}
+
+.glow-border::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: inherit;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Texto gradiente dinámico */
+.text-gradient {
+    background: linear-gradient(to right, #fff, #a1a1aa, #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
+}
+
+/* Carrusel infinito (Marquee) */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+/* Animaciones de Texto Premium */
+@keyframes text-reveal {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.text-reveal {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.text-reveal>span {
+    display: inline-block;
+    animation: text-reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Brillo en texto */
+.text-shine {
+    background: linear-gradient(to right,
+            #444 0%,
+            #fff 10%,
+            #444 20%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shine 3s linear infinite;
+}
+
+@keyframes text-shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Ciclo de palabras — texto animado en el hero */
+.hero-cycle-word {
+    display: inline-block;
+    background: linear-gradient(to right, #d4d4d8, #ffffff, #71717a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: wordFadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes wordFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes wordFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+}
+
+.hero-cycle-word.leaving {
+    animation: wordFadeOut 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Premium Speed Widget Styles */
+.speed-widget {
+    filter: drop-shadow(0 4px 20px rgba(239, 68, 68, 0.15));
+    transition: transform 0.3s ease;
+}
+
+.speed-widget:hover {
+    transform: scale(1.05);
+}
+
+@keyframes blink {
+    0%, 90%, 100% {
+        transform: scaleY(1);
+    }
+    93%, 97% {
+        transform: scaleY(0.1);
+    }
+}
+
+.animate-blink {
+    animation: blink 4s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -72;
+    }
+}
+
+.animate-dash {
+    animation: dash 1s linear infinite;
+}
+
+/* Make the dash move faster on parent bento hover */
+.bento-card:hover .animate-dash {
+    animation-duration: 0.4s;
+}
+
+/* Vercel-style Graphic Animations */
+
+/* Flow Line Animation (Moving dashes along paths) */
+@keyframes flowLine {
+    to {
+        stroke-dashoffset: -30;
+    }
+}
+.animate-flow-line {
+    stroke-dasharray: 6 9;
+    animation: flowLine 2s linear infinite;
+}
+
+/* Faster flow for DOM interaction */
+@keyframes flowLineFast {
+    to {
+        stroke-dashoffset: -30;
+    }
+}
+.animate-flow-line-fast {
+    stroke-dasharray: 4 6;
+    animation: flowLineFast 1s linear infinite;
+}
+
+/* Slower flow for network topology */
+.animate-flow-line-slow {
+    stroke-dasharray: 6 9;
+    animation: flowLine 4s linear infinite;
+}
+
+/* Pulsing slow for nodes */
+@keyframes pulseSlow {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.96);
+    }
+    50% {
+        opacity: 0.95;
+        transform: scale(1.04);
+    }
+}
+.animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+}
+
+/* Wave Path Dot Movement */
+@keyframes waveMove {
+    0% {
+        motion-offset: 0%;
+        offset-distance: 0%;
+    }
+    100% {
+        motion-offset: 100%;
+        offset-distance: 100%;
+    }
+}
+.animate-wave-move {
+    /* offset-path is set inline inside the SVG */
+    animation: waveMove 4s linear infinite;
+}
+
+/* Shield rotation */
+@keyframes shieldRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.animate-shield-rotate {
+    animation: shieldRotate 12s linear infinite;
+    transform-origin: center;
+}
+
+/* Float slower */
+@keyframes floatSlower {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+.animate-float-slower {
+    animation: floatSlower 5s ease-in-out infinite;
+}
+
+/* Secure Widget Scanner Animation */
+@keyframes scanner {
+    0%, 100% {
+        transform: translateY(-20px);
+        opacity: 0.2;
+    }
+    50% {
+        transform: translateY(20px);
+        opacity: 0.9;
+        filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+    }
+}
+
+.animate-scanner {
+    animation: scanner 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Make scanner sweep faster on hover */
+.bento-card:hover .animate-scanner {
+    animation-duration: 1.5s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BENTO MOTION GRAPHICS V2 — CINEMATIC & LIVING CIRCUITS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Respiración viva del núcleo orb */
+@keyframes coreBreathing {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 16px rgba(var(--core-glow, 245, 158, 11), 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 38px rgba(var(--core-glow, 245, 158, 11), 0.75), inset 0 2px 8px rgba(255, 255, 255, 0.35);
+  }
+}
+.animate-core-breathing {
+  animation: coreBreathing 3s ease-in-out infinite;
+}
+
+/* Pulsación de nodos activos */
+@keyframes nodePulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(245, 158, 11, 0.7);
+    border-color: rgba(245, 158, 11, 0.9);
+  }
+}
+.animate-node-pulse {
+  animation: nodePulseGlow 2.2s ease-in-out infinite;
+}
+
+/* Bloqueo / Rechazo de VDOM (electric buzz) */
+@keyframes vdomRejection {
+  0%, 100% {
+    opacity: 0.6;
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    opacity: 1;
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  }
+}
+.animate-vdom-reject {
+  animation: vdomRejection 2.5s ease-in-out infinite;
+}
+
+/* Haz de escaneo holográfico para Route Guards */
+@keyframes cyberScanBeam {
+  0% {
+    transform: translateY(-38px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(38px);
+    opacity: 0;
+  }
+}
+.animate-cyber-scan {
+  animation: cyberScanBeam 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.bento-card:hover .animate-cyber-scan {
+  animation-duration: 1.1s;
+}
+
+/* Radar Sonar Ripple */
+@keyframes radarRipple {
+  0% {
+    r: 16;
+    opacity: 0.8;
+  }
+  100% {
+    r: 44;
+    opacity: 0;
+  }
+}
+.animate-radar-ripple {
+  animation: radarRipple 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* Tacómetro y láser de velocidad 0ms */
+@keyframes speedSurge {
+  0%, 100% {
+    stroke-dashoffset: 80;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-speed-surge {
+  animation: speedSurge 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VERCEL DESIGN SYSTEM — COLORS & ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Vercel Conic Light Ray in Hero */
+.vercel-hero-ray {
+  position: absolute;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 640px;
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    rgba(0, 112, 243, 0) 0deg,
+    rgba(0, 112, 243, 0.22) 50deg,
+    rgba(255, 255, 255, 0.45) 90deg,
+    rgba(121, 40, 202, 0.28) 130deg,
+    rgba(0, 112, 243, 0) 180deg
+  );
+  filter: blur(75px);
+  pointer-events: none;
+  opacity: 0.85;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 45%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 45%, transparent 75%);
+}
+
+/* Vercel Ambient Spotlight */
+.vercel-spotlight-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Vercel Precision 1px Grid */
+.vercel-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* Vercel Card with dynamic cursor spotlight */
+.vercel-card {
+  position: relative;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 35px -8px rgba(255, 255, 255, 0.08);
+}
+
+.vercel-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    rgba(255, 255, 255, 0.07),
+    transparent 40%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-card:hover::before {
+  opacity: 1;
+}
+
+/* Vercel Heading Gradient */
+.vercel-gradient-text {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Vercel Accent Gradient (Cyan -> Violet -> Pink) */
+.vercel-accent-gradient {
+  background: linear-gradient(to right, #0070F3, #7928CA, #FF0080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Vercel Monochromatic Laser Beam Border */
+@keyframes borderLaser {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.vercel-border-laser {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.vercel-border-laser::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.4), rgba(255,255,255,0.08));
+  background-size: 200% 200%;
+  animation: borderLaser 6s ease infinite;
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Vercel Pill Badge */
+.vercel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ededed;
+  font-size: 12px;
+  font-weight: 500;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-badge:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Vercel Button Primary */
+.vercel-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 9999px;
+  border: 1px solid #ffffff;
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-btn-primary:hover {
+  background: #eaeaea;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.25);
+}
+
+.vercel-btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Vercel Button Secondary / Outline */
+.vercel-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #000000;
+  color: #ededed;
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vercel-btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ── Code Matrix Waterfall Cascade Animation (Downward Flow, Monochrome) ── */
+@keyframes codeWaterfall {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-waterfall-1 {
+  animation: codeWaterfall 22s linear infinite;
+}
+
+.animate-waterfall-2 {
+  animation: codeWaterfall 28s linear infinite;
+}
+
+.animate-waterfall-3 {
+  animation: codeWaterfall 25s linear infinite;
+}
+
+.animate-waterfall-4 {
+  animation: codeWaterfall 32s linear infinite;
+}
+
+.code-stream-col {
+  user-select: none;
+  font-feature-settings: "tnum";
+}
+
+
+
